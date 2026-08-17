@@ -130,6 +130,9 @@ body {
   overflow-x: hidden;           /* guard against accidental h-scroll */
   transition: background-color var(--tr), color var(--tr);
 }
+body:has(.site-header) {
+  padding-top: var(--header-h);
+}
 
 img, svg, video { max-width: 100%; height: auto; display: block; }
 
@@ -342,9 +345,12 @@ li { margin-bottom: .35rem; color: var(--text-2); }
 
 /* ---------- 6. Header / Navbar ------------------------------------------ */
 .site-header {
-  position: sticky;
-  inset-block-start: 0;
-  z-index: 90;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
   background: color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter: blur(12px);
   border-block-end: 1px solid var(--border);
