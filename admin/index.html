@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Dashboard | LearnSphere Tutoring Centre</title>
+<meta name="description" content="LearnSphere admin dashboard — students, tutors, courses, batches, attendance, results and analytics.">
+<meta name="theme-color" content="#145dc4">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Admin Dashboard | LearnSphere">
+<meta property="og:description" content="LearnSphere admin dashboard — students, tutors, courses, batches, attendance, results and analytics.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/images/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<script src="../assets/js/main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="nav-backdrop" data-nav-backdrop></div>
+<div class="dash">
+  <aside class="dash-side" data-dash-side aria-label="Administrator navigation">
+    <div class="flex items-center justify-between">
+      <a class="dash-brand" href="../index.html" aria-label="LearnSphere home">
+        <img class="brand-mark" src="../assets/images/logo.svg" alt="" width="40" height="40">
+        <span class="brand-text">
+          <span class="brand-name">LearnSphere</span>
+          <span class="brand-tag">Tutoring Centre</span>
+        </span>
+      </a>
+      <button class="icon-btn dash-sidebar-toggle" type="button" data-dash-toggle aria-label="Close sidebar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <nav class="dash-nav"><p class="group-label">Overview</p><a class="dash-link is-active" href="index.html" aria-current="page"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i><span>Dashboard</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-chart-column" aria-hidden="true"></i><span>Analytics</span></a><p class="group-label">Management</p><a class="dash-link" href="index.html"><i class="fa-solid fa-user-graduate" aria-hidden="true"></i><span>Students</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i><span>Tutors</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Courses</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><span>Batches</span></a><a class="dash-link" href="index.html"><i class="fa-regular fa-circle-check" aria-hidden="true"></i><span>Attendance</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-folder-open" aria-hidden="true"></i><span>Study Materials</span></a><p class="group-label">Assessment</p><a class="dash-link" href="index.html"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Tests &amp; Exams</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>Results</span></a><p class="group-label">Content</p><a class="dash-link" href="index.html"><i class="fa-regular fa-envelope" aria-hidden="true"></i><span>Messages</span><span class="pill">5</span></a><a class="dash-link" href="index.html"><i class="fa-regular fa-comments" aria-hidden="true"></i><span>Testimonials</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Blog</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></a></nav>
+    <a class="dash-link" href="../admin-login.html" style="margin-top:auto;color:var(--danger);"><i class="fa-solid fa-right-from-bracket ico-dir" aria-hidden="true"></i><span>Logout</span></a>
+  </aside>
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <div class="flex items-center min-w-0" style="gap:.6rem;">
+        <button class="icon-btn dash-sidebar-toggle" type="button" data-dash-toggle aria-label="Open sidebar"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+        <div class="tb-title min-w-0"><h1>Admin Dashboard</h1><span class="tb-sub">Elena Prasad · Centre Admin</span></div>
+      </div>
+      <div class="dash-tools">
+        <div class="searchbar">
+          <label class="sr-only" for="dash-search">Search</label>
+          <i class="fa-solid fa-magnifying-glass field-icon" aria-hidden="true"></i>
+          <input class="input" id="dash-search" type="search" placeholder="Search">
+        </div>
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme"><i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i><i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn lang-btn" type="button" data-dir-toggle aria-label="Switch layout direction"><i class="fa-solid fa-language" aria-hidden="true"></i><span data-dir-label>RTL</span></button>
+        <button class="icon-btn" type="button" aria-label="Notifications"><i class="fa-regular fa-bell" aria-hidden="true"></i></button>
+        <img class="avatar avatar-sm" src="../assets/images/tutor-1.jpg" alt="" width="800" height="800">
+      </div>
+    </header>
+    <main id="main" class="dash-content">
+    <div class="grid g-4">
+      <article class="card kpi reveal">
+      <div class="icon-tile"><i class="fa-solid fa-user-graduate" aria-hidden="true"></i></div>
+      <div class="kpi-txt min-w-0"><div class="kpi-val">1,248</div><div class="kpi-label">Total students</div><span class="trend up">+38 this month</span></div>
+    </article>
+      <article class="card kpi reveal">
+      <div class="icon-tile"><i class="fa-solid fa-user-check" aria-hidden="true"></i></div>
+      <div class="kpi-txt min-w-0"><div class="kpi-val">1,096</div><div class="kpi-label">Active students</div><span class="trend up">+2.4%</span></div>
+    </article>
+      <article class="card kpi reveal">
+      <div class="icon-tile"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></div>
+      <div class="kpi-txt min-w-0"><div class="kpi-val">48</div><div class="kpi-label">Tutors</div></div>
+    </article>
+      <article class="card kpi reveal">
+      <div class="icon-tile"><i class="fa-solid fa-book" aria-hidden="true"></i></div>
+      <div class="kpi-txt min-w-0"><div class="kpi-val">32</div><div class="kpi-label">Active courses</div></div>
+    </article>
+    </div>
+
+    <div class="grid" style="grid-template-columns:1fr;gap:var(--sp-5);">
+      <div class="grid g-2" style="align-items:start;">
+        <section class="panel reveal">
+          <div class="panel-head"><h2>Monthly enrolments</h2><div class="legend"><span><i style="background:var(--brand-500);"></i>New students</span></div></div>
+          <div class="panel-body"><div class="chart-bars"><div class="bar-col"><div class="bar" style="height:49%"></div><span class="bar-label">Mar</span></div><div class="bar-col"><div class="bar" style="height:64%"></div><span class="bar-label">Apr</span></div><div class="bar-col"><div class="bar" style="height:56%"></div><span class="bar-label">May</span></div><div class="bar-col"><div class="bar" style="height:73%"></div><span class="bar-label">Jun</span></div><div class="bar-col"><div class="bar" style="height:83%"></div><span class="bar-label">Jul</span></div><div class="bar-col"><div class="bar" style="height:100%"></div><span class="bar-label">Aug</span></div></div></div>
+        </section>
+        <section class="panel reveal">
+          <div class="panel-head"><h2>Attendance rate</h2><span class="badge badge-success">Healthy</span></div>
+          <div class="panel-body">
+            <div class="donut" style="--val:93;" data-value="93%" role="img" aria-label="Attendance 93 percent"></div>
+            <div class="grid g-2" style="margin-top:var(--sp-5);gap:var(--sp-3);">
+              <div><div class="flex justify-between" style="font-size:.85rem;"><span>Classes 1–5</span><strong>95%</strong></div><div class="progress" style="margin-top:.3rem;"><span style="width:95%"></span></div></div><div><div class="flex justify-between" style="font-size:.85rem;"><span>Classes 6–8</span><strong>92%</strong></div><div class="progress" style="margin-top:.3rem;"><span style="width:92%"></span></div></div><div><div class="flex justify-between" style="font-size:.85rem;"><span>Classes 9–10</span><strong>94%</strong></div><div class="progress" style="margin-top:.3rem;"><span style="width:94%"></span></div></div><div><div class="flex justify-between" style="font-size:.85rem;"><span>Classes 11–12</span><strong>90%</strong></div><div class="progress" style="margin-top:.3rem;"><span style="width:90%"></span></div></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel reveal">
+        <div class="panel-head">
+          <h2>Recent enrolments</h2>
+          <div class="flex" style="gap:.5rem;flex-wrap:wrap;">
+            <div class="searchbar"><label class="sr-only" for="adm-search">Search students</label><i class="fa-solid fa-magnifying-glass field-icon" aria-hidden="true"></i><input class="input" id="adm-search" type="search" placeholder="Search students" data-search-input data-search-target="#adm-rows"></div>
+            <a class="btn btn-primary btn-sm" href="index.html"><i class="fa-solid fa-plus" aria-hidden="true"></i>Add student</a>
+          </div>
+        </div>
+        <div class="panel-body flush">
+          <div class="table-wrap" style="border:0;border-radius:0;">
+            <table class="data" id="adm-rows">
+              <caption class="sr-only">Recently enrolled students</caption>
+              <thead><tr><th scope="col">Student</th><th scope="col">Class</th><th scope="col">Subjects</th><th scope="col">Batch</th><th scope="col">Fee status</th><th scope="col">Actions</th></tr></thead>
+              <tbody>
+                <tr data-search-text="Aarav Mehta Class 10"><td><strong>Aarav Mehta</strong></td><td>Class 10</td><td>Maths, Physics, CS</td><td>M-10-A</td><td><span class="badge badge-success">Paid</span></td>
+                <td><a class="btn btn-ghost btn-sm" href="index.html" aria-label="View Aarav Mehta"><i class="fa-regular fa-eye" aria-hidden="true"></i></a><a class="btn btn-ghost btn-sm" href="index.html" aria-label="Edit Aarav Mehta"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a></td></tr><tr data-search-text="Leah Kowalski Class 12"><td><strong>Leah Kowalski</strong></td><td>Class 12</td><td>Physics, Chemistry</td><td>S-12-B</td><td><span class="badge badge-success">Paid</span></td>
+                <td><a class="btn btn-ghost btn-sm" href="index.html" aria-label="View Leah Kowalski"><i class="fa-regular fa-eye" aria-hidden="true"></i></a><a class="btn btn-ghost btn-sm" href="index.html" aria-label="Edit Leah Kowalski"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a></td></tr><tr data-search-text="Omar Siddiq Class 8"><td><strong>Omar Siddiq</strong></td><td>Class 8</td><td>English, Science</td><td>E-08-A</td><td><span class="badge badge-accent">Due</span></td>
+                <td><a class="btn btn-ghost btn-sm" href="index.html" aria-label="View Omar Siddiq"><i class="fa-regular fa-eye" aria-hidden="true"></i></a><a class="btn btn-ghost btn-sm" href="index.html" aria-label="Edit Omar Siddiq"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a></td></tr><tr data-search-text="Ishita Prasad Class 9"><td><strong>Ishita Prasad</strong></td><td>Class 9</td><td>Maths, Science</td><td>M-09-C</td><td><span class="badge badge-success">Paid</span></td>
+                <td><a class="btn btn-ghost btn-sm" href="index.html" aria-label="View Ishita Prasad"><i class="fa-regular fa-eye" aria-hidden="true"></i></a><a class="btn btn-ghost btn-sm" href="index.html" aria-label="Edit Ishita Prasad"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a></td></tr><tr data-search-text="Ben Carter Class 11"><td><strong>Ben Carter</strong></td><td>Class 11</td><td>Chemistry</td><td>S-11-A</td><td><span class="badge badge-danger">Overdue</span></td>
+                <td><a class="btn btn-ghost btn-sm" href="index.html" aria-label="View Ben Carter"><i class="fa-regular fa-eye" aria-hidden="true"></i></a><a class="btn btn-ghost btn-sm" href="index.html" aria-label="Edit Ben Carter"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a></td></tr><tr data-search-text="Mira Devi Class 7"><td><strong>Mira Devi</strong></td><td>Class 7</td><td>Mathematics</td><td>M-07-B</td><td><span class="badge badge-success">Paid</span></td>
+                <td><a class="btn btn-ghost btn-sm" href="index.html" aria-label="View Mira Devi"><i class="fa-regular fa-eye" aria-hidden="true"></i></a><a class="btn btn-ghost btn-sm" href="index.html" aria-label="Edit Mira Devi"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid g-3" style="align-items:start;">
+        <section class="panel reveal">
+          <div class="panel-head"><h2>Test performance</h2></div>
+          <div class="panel-body">
+            <div class="grid" style="gap:var(--sp-3);">
+              <div><div class="flex justify-between" style="font-size:.85rem;"><span>Mathematics</span><strong>88%</strong></div><div class="progress" style="margin-top:.3rem;"><span style="width:88%"></span></div></div><div><div class="flex justify-between" style="font-size:.85rem;"><span>Physics</span><strong>81%</strong></div><div class="progress" style="margin-top:.3rem;"><span style="width:81%"></span></div></div><div><div class="flex justify-between" style="font-size:.85rem;"><span>Chemistry</span><strong>78%</strong></div><div class="progress" style="margin-top:.3rem;"><span style="width:78%"></span></div></div><div><div class="flex justify-between" style="font-size:.85rem;"><span>English</span><strong>84%</strong></div><div class="progress" style="margin-top:.3rem;"><span style="width:84%"></span></div></div><div><div class="flex justify-between" style="font-size:.85rem;"><span>Computer Science</span><strong>90%</strong></div><div class="progress" style="margin-top:.3rem;"><span style="width:90%"></span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="panel reveal">
+          <div class="panel-head"><h2>Latest messages</h2><a class="btn btn-outline btn-sm" href="index.html">Inbox</a></div>
+          <div class="panel-body">
+            <ul class="timeline">
+              <li><span class="dot"><i class="fa-regular fa-envelope" aria-hidden="true"></i></span><span class="min-w-0"><strong>Rachel Turner</strong><span>Asking about Class 9 maths batch timing · 2h ago</span></span></li><li><span class="dot"><i class="fa-regular fa-envelope" aria-hidden="true"></i></span><span class="min-w-0"><strong>Nadia Rahman</strong><span>Requesting a fee receipt for July · 5h ago</span></span></li><li><span class="dot"><i class="fa-regular fa-envelope" aria-hidden="true"></i></span><span class="min-w-0"><strong>Marcus Bell</strong><span>Wants to add chemistry from September · 1d ago</span></span></li>
+            </ul>
+          </div>
+        </section>
+        <section class="panel reveal">
+          <div class="panel-head"><h2>Batches today</h2><a class="btn btn-outline btn-sm" href="index.html">All batches</a></div>
+          <div class="panel-body">
+            <ul class="timeline">
+              <li><span class="dot"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span><span class="min-w-0"><strong>M-10-A · Mathematics</strong><span>16:00 – 17:30 · Room 2 · 8 students</span></span></li><li><span class="dot"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span><span class="min-w-0"><strong>S-12-B · Physics</strong><span>17:45 – 19:00 · Room 4 · 6 students</span></span></li><li><span class="dot"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span><span class="min-w-0"><strong>C-09-A · Computer Science</strong><span>19:10 – 20:00 · Lab · 7 students</span></span></li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div></main>
+  </div>
+</div>
+<div class="toast" data-toast role="status" aria-live="polite"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><p>Done.</p></div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "mathematics-mastery-mastery",
+    "category": "mathematics",
+    "classRange": "9-10",
+    "image": "assets/images/course-math.jpg",
+    "title": "Mathematics Mastery",
+    "description": "Algebra, geometry and trigonometry taught step by step with weekly problem-solving drills.",
+    "tutor": "Ms. Amelia Hart",
+    "schedule": "Mon, Wed, Fri · 16:00 – 17:30",
+    "price": "$95 / month"
+  },
+  {
+    "id": "general-science-lab",
+    "category": "science",
+    "classRange": "6-8",
+    "image": "assets/images/course-science.jpg",
+    "title": "General Science Lab",
+    "description": "Concept-first science with simple experiments that make physics, chemistry and biology click.",
+    "tutor": "Mr. Daniel Okafor",
+    "schedule": "Tue, Thu · 17:00 – 18:15",
+    "price": "$85 / month"
+  },
+  {
+    "id": "english-language-literature-language-literature",
+    "category": "english",
+    "classRange": "6-8",
+    "image": "assets/images/course-english.jpg",
+    "title": "English Language &amp; Literature",
+    "description": "Reading comprehension, grammar, creative writing and confident classroom speaking.",
+    "tutor": "Ms. Sofia Marino",
+    "schedule": "Mon, Thu · 15:30 – 16:45",
+    "price": "$80 / month"
+  },
+  {
+    "id": "computer-science-basics",
+    "category": "computer-science",
+    "classRange": "9-10",
+    "image": "assets/images/course-cs.jpg",
+    "title": "Computer Science Basics",
+    "description": "Block-to-Python progression, logic building, and school project support.",
+    "tutor": "Mr. Ethan Blake",
+    "schedule": "Sat · 10:00 – 12:00",
+    "price": "$90 / month"
+  },
+  {
+    "id": "physics-board-exams",
+    "category": "science",
+    "classRange": "11-12",
+    "image": "assets/images/course-physics.jpg",
+    "title": "Physics for Board Exams",
+    "description": "Derivations, numericals and past-paper practice built around the board exam blueprint.",
+    "tutor": "Mr. Daniel Okafor",
+    "schedule": "Mon, Wed · 18:00 – 19:30",
+    "price": "$120 / month"
+  },
+  {
+    "id": "foundation-numeracy",
+    "category": "mathematics",
+    "classRange": "1-5",
+    "image": "assets/images/course-numeracy.png",
+    "title": "Foundation Numeracy",
+    "description": "Playful, confidence-building number work with small groups and lots of encouragement.",
+    "tutor": "Ms. Amelia Hart",
+    "schedule": "Tue, Fri · 15:00 – 16:00",
+    "price": "$65 / month"
+  },
+  {
+    "id": "chemistry-concepts",
+    "category": "science",
+    "classRange": "11-12",
+    "image": "assets/images/course-chemistry.png",
+    "title": "Chemistry Concepts",
+    "description": "Organic, inorganic and physical chemistry with structured revision cycles.",
+    "tutor": "Ms. Priya Raman",
+    "schedule": "Tue, Thu · 18:00 – 19:30",
+    "price": "$115 / month"
+  },
+  {
+    "id": "social-science-civics",
+    "category": "english",
+    "classRange": "6-8",
+    "image": "assets/images/course-social.png",
+    "title": "Social Science &amp; Civics",
+    "description": "History, geography and civics with mind-maps, timelines and short-answer technique.",
+    "tutor": "Ms. Sofia Marino",
+    "schedule": "Wed, Sat · 11:00 – 12:15",
+    "price": "$75 / month"
+  }
+]

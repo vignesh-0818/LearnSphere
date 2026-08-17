@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create Admin Account | LearnSphere Tutoring Centre</title>
+<meta name="description" content="Request a LearnSphere staff administration account for the tutoring centre dashboard.">
+<meta name="theme-color" content="#145dc4">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Create Admin Account | LearnSphere">
+<meta property="og:description" content="Request a LearnSphere staff administration account for the tutoring centre dashboard.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<script src="assets/js/main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<main id="main" class="auth-wrap">
+  <section class="auth-aside">
+    <div class="aside-bg"><img src="assets/images/course-cs.jpg" alt="" width="1600" height="1000"></div>
+    <div>
+      <a class="nav-brand" href="index.html" aria-label="LearnSphere home">
+        <img class="brand-mark" src="assets/images/logo.svg" alt="" width="40" height="40">
+        <span class="brand-text">
+          <span class="brand-name">LearnSphere</span>
+          <span class="brand-tag">Tutoring Centre</span>
+        </span>
+      </a>
+      <h2 style="margin-top:2rem;">Staff onboarding</h2>
+      
+      <ul><li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Role-based access</span></li><li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Audit-friendly activity log</span></li><li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Two-step verification ready</span></li></ul>
+    </div>
+  </section>
+  <section class="auth-panel">
+    
+    <div class="auth-controls">
+      <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+        <i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
+      </button>
+      <button class="icon-btn lang-btn" type="button" data-dir-toggle aria-label="Switch layout">
+        <i class="fa-solid fa-language" aria-hidden="true"></i><span data-dir-label>RTL</span>
+      </button>
+    </div>
+    <div class="auth-card">
+      <a class="auth-brand" href="index.html" aria-label="LearnSphere home">
+        <img class="brand-mark" src="assets/images/logo.svg" alt="" width="40" height="40">
+        <span class="brand-text">
+          <span class="brand-name">LearnSphere</span>
+          <span class="brand-tag">Tutoring Centre</span>
+        </span>
+      </a>
+      <span class="badge" style="margin-bottom:.6rem;"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i>Staff area</span>
+      <h1 style="font-size:1.7rem;">Create Admin Account</h1>
+      <p>New staff accounts are reviewed by the centre administrator before activation.</p>
+      <form class="form" id="admin-register-form" novalidate>
+        <div class="field">
+          <label class="label" for="ar-name">Full name <span class="req" aria-hidden="true">*</span></label>
+          <div class="control has-icon"><i class="fa-regular fa-user field-icon" aria-hidden="true"></i>
+            <input class="input" id="ar-name" name="name" type="text" placeholder="Your full name" autocomplete="name" required></div>
+        </div>
+        <div class="field">
+          <label class="label" for="ar-email">Email address <span class="req" aria-hidden="true">*</span></label>
+          <div class="control has-icon"><i class="fa-regular fa-envelope field-icon" aria-hidden="true"></i>
+            <input class="input" id="ar-email" name="email" type="email" placeholder="you@learnsphere.example" autocomplete="email" required></div>
+        </div>
+        <div class="field">
+        <label class="label" for="ar-password">Password <span class="req" aria-hidden="true">*</span></label>
+        <div class="control has-icon has-action">
+          <i class="fa-solid fa-lock field-icon" aria-hidden="true"></i>
+          <input class="input" id="ar-password" name="ar-password" type="password" placeholder="Create a password" autocomplete="new-password" required>
+          <button class="field-action" type="button" data-toggle-password aria-label="Show password"><i class="fa-regular fa-eye" aria-hidden="true"></i></button>
+        </div>
+      </div>
+        <div class="field">
+        <label class="label" for="ar-confirm">Confirm password <span class="req" aria-hidden="true">*</span></label>
+        <div class="control has-icon has-action">
+          <i class="fa-solid fa-lock field-icon" aria-hidden="true"></i>
+          <input class="input" id="ar-confirm" name="ar-confirm" type="password" placeholder="Repeat your password" autocomplete="new-password" required>
+          <button class="field-action" type="button" data-toggle-password aria-label="Show password"><i class="fa-regular fa-eye" aria-hidden="true"></i></button>
+        </div>
+      </div>
+        <label class="check" for="ar-terms"><input type="checkbox" id="ar-terms" name="terms" required><span>I confirm I am authorised to request a staff account.</span></label>
+        <button class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa-solid fa-user-shield" aria-hidden="true"></i>Create Admin Account</button>
+        <p class="form-note">Already have access? <a href="admin-login.html">Admin Login</a></p>
+      </form>
+    </div>
+  </section>
+</main>
+<div class="toast" data-toast role="status" aria-live="polite"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><p>Done.</p></div>
+<script src="assets/js/session.js"></script>
+</body>
+</html>
+
+

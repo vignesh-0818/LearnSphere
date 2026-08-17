@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LearnSphere | Dashboard</title>
+<meta name="description" content="LearnSphere student dashboard — classes, attendance, study materials, tests and results.">
+<meta name="theme-color" content="#145dc4">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Student Dashboard | LearnSphere">
+<meta property="og:description" content="LearnSphere student dashboard — classes, attendance, study materials, tests and results.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<script src="assets/js/main.js" defer></script>
+
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="nav-backdrop" data-nav-backdrop></div>
+<div class="dash">
+  <aside class="dash-side" data-dash-side aria-label="Student navigation">
+    <div class="flex items-center justify-between">
+      <a class="dash-brand" href="index.html" aria-label="LearnSphere home">
+        <img class="brand-mark" src="assets/images/logo.svg" alt="" width="40" height="40">
+        <span class="brand-text">
+          <span class="brand-name">LearnSphere</span>
+          <span class="brand-tag">Tutoring Centre</span>
+        </span>
+      </a>
+      <button class="icon-btn dash-sidebar-toggle" type="button" data-dash-toggle aria-label="Close sidebar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <nav class="dash-nav">
+<p class="group-label">Learning</p>
+<a class="dash-link is-active" href="student-dashboard.html"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i><span>Dashboard</span></a>
+<a class="dash-link" href="student-subjects.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>My Subjects</span></a>
+<a class="dash-link" href="student-schedule.html"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i><span>Class Schedule</span></a>
+<a class="dash-link" href="student-attendance.html"><i class="fa-regular fa-circle-check" aria-hidden="true"></i><span>Attendance</span></a>
+<a class="dash-link" href="student-materials.html"><i class="fa-solid fa-folder-open" aria-hidden="true"></i><span>Study Materials</span></a>
+<p class="group-label">Assessment</p>
+<a class="dash-link" href="student-tests.html"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Upcoming Tests</span></a>
+<a class="dash-link" href="student-results.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>Results</span></a>
+<a class="dash-link" href="student-announcements.html"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i><span>Announcements</span></a>
+<p class="group-label">Account</p>
+<a class="dash-link" href="student-profile.html"><i class="fa-regular fa-user" aria-hidden="true"></i><span>Profile</span></a>
+<a class="dash-link" href="student-settings.html"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></a>
+<a class="dash-link" href="index.html" style="margin-top:2rem;"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i><span>Back to Website</span></a>
+<a class="dash-link" href="#" data-action="logout" style="margin-top:auto;color:var(--danger);"><i class="fa-solid fa-right-from-bracket ico-dir" aria-hidden="true"></i><span>Logout</span></a>
+</nav>
+  </aside>
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <div class="flex items-center min-w-0" style="gap:.6rem;">
+        <button class="icon-btn dash-sidebar-toggle" type="button" data-dash-toggle aria-label="Open sidebar"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+        <div class="tb-title min-w-0"><h1>Dashboard</h1><span class="tb-sub"><span class="user-name" data-user-name>Vignesh R</span> • <span class="user-role" data-user-class>Class 10</span></span></div>
+      </div>
+      <div class="dash-tools">
+        <form class="searchbar" data-dash-search>
+          <label class="sr-only" for="dash-search">Search</label>
+          <button type="submit" style="background:none;border:none;padding:0;position:absolute;inset-inline-start:1rem;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--text-3);"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+          <input class="input" id="dash-search" type="search" placeholder="Search" style="padding-inline-start:2.5rem;">
+        </form>
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme"><i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i><i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn lang-btn" type="button" data-dir-toggle aria-label="Switch layout direction"><i class="fa-solid fa-language" aria-hidden="true"></i><span data-dir-label>RTL</span></button>
+        
+        <div class="dropdown-wrapper session-dropdown-wrapper" style="position:relative;">
+            <button class="profile-trigger" type="button" aria-haspopup="true" aria-expanded="false" id="session-user-toggle" data-user-toggle>
+                <img class="avatar avatar-sm" src="assets/images/tutor-2.jpg" alt="Profile" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+                <span style="font-weight:600;color:var(--text);" data-user-name>Vignesh R</span>
+                <i class="fa-solid fa-chevron-down" style="font-size:12px;color:var(--text-2);"></i>
+            </button>
+            <div class="profile-dropdown-menu" id="session-user-dropdown" data-user-dropdown>
+                <a href="student-dashboard.html">Dashboard</a>
+                <a href="student-subjects.html">My Subjects</a>
+                <a href="student-schedule.html">Class Schedule</a>
+                <a href="student-attendance.html">Attendance</a>
+                <a href="student-materials.html">Study Materials</a>
+                <a href="student-tests.html">Upcoming Tests</a>
+                <a href="student-results.html">Results</a>
+                <a href="student-profile.html">Profile</a>
+                <a href="student-settings.html">Settings</a>
+                <hr style="margin: 0.5rem 0; border: none; border-top: 1px solid var(--border);">
+                <a href="index.html">Back to Website</a>
+                <a href="#" data-action="logout" class="text-danger">Logout</a>
+            </div>
+        </div>
+
+      </div>
+    </header>
+    <main id="main" class="dash-content">
+
+<div class="grid g-4 mb-4">
+    <article class="card kpi reveal"><div class="icon-tile"><i class="fa-regular fa-calendar-day" aria-hidden="true"></i></div><div class="kpi-txt min-w-0"><div class="kpi-val">3</div><div class="kpi-label">Today's classes</div></div><a href="student-schedule.html" style="position:absolute;inset:0;" aria-label="View schedule"></a></article>
+    <article class="card kpi reveal"><div class="icon-tile"><i class="fa-solid fa-percent" aria-hidden="true"></i></div><div class="kpi-txt min-w-0"><div class="kpi-val">96%</div><div class="kpi-label">Attendance</div></div><a href="student-attendance.html" style="position:absolute;inset:0;" aria-label="View attendance"></a></article>
+    <article class="card kpi reveal"><div class="icon-tile"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></div><div class="kpi-txt min-w-0"><div class="kpi-val">2</div><div class="kpi-label">Upcoming tests</div></div><a href="student-tests.html" style="position:absolute;inset:0;" aria-label="View tests"></a></article>
+    <article class="card kpi reveal"><div class="icon-tile"><i class="fa-solid fa-book" aria-hidden="true"></i></div><div class="kpi-txt min-w-0"><div class="kpi-val">4</div><div class="kpi-label">Enrolled subjects</div></div><a href="student-subjects.html" style="position:absolute;inset:0;" aria-label="View subjects"></a></article>
+</div>
+
+<div class="grid g-2 mb-4" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+    <section class="panel">
+        <div class="panel-head"><h2>Today's Schedule</h2><a href="student-schedule.html" class="btn btn-sm btn-outline">View All</a></div>
+        <div class="panel-body">
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1.5rem;">
+                <li style="display:flex;gap:1rem;align-items:flex-start;">
+                    <div style="background:color-mix(in srgb, var(--primary) 10%, transparent);color:var(--primary);width:40px;height:40px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-calculator"></i></div>
+                    <div>
+                        <h3 style="font-size:1rem;margin:0 0 .25rem;">Mathematics — Trigonometry Practice</h3>
+                        <p class="text-sm text-2" style="margin-bottom:.25rem;"><i class="fa-regular fa-clock" style="margin-inline-end:.3rem;"></i> 16:00 – 17:30</p>
+                        <p class="text-sm text-2"><i class="fa-solid fa-location-dot" style="margin-inline-end:.3rem;"></i> Room 2 &middot; <i class="fa-regular fa-user" style="margin-inline-end:.3rem;"></i> Ms. Amelia Hart</p>
+                    </div>
+                </li>
+                <li style="display:flex;gap:1rem;align-items:flex-start;">
+                    <div style="background:color-mix(in srgb, var(--secondary) 10%, transparent);color:var(--secondary);width:40px;height:40px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-atom"></i></div>
+                    <div>
+                        <h3 style="font-size:1rem;margin:0 0 .25rem;">Physics — Motion Numericals</h3>
+                        <p class="text-sm text-2" style="margin-bottom:.25rem;"><i class="fa-regular fa-clock" style="margin-inline-end:.3rem;"></i> 17:45 – 19:00</p>
+                        <p class="text-sm text-2"><i class="fa-solid fa-location-dot" style="margin-inline-end:.3rem;"></i> Room 4 &middot; <i class="fa-regular fa-user" style="margin-inline-end:.3rem;"></i> Mr. Daniel Okafor</p>
+                    </div>
+                </li>
+                <li style="display:flex;gap:1rem;align-items:flex-start;">
+                    <div style="background:color-mix(in srgb, var(--success) 10%, transparent);color:var(--success);width:40px;height:40px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div>
+                        <h3 style="font-size:1rem;margin:0 0 .25rem;">Computer Science — Python Loops</h3>
+                        <p class="text-sm text-2" style="margin-bottom:.25rem;"><i class="fa-regular fa-clock" style="margin-inline-end:.3rem;"></i> 19:10 – 20:00</p>
+                        <p class="text-sm text-2"><i class="fa-solid fa-location-dot" style="margin-inline-end:.3rem;"></i> Lab &middot; <i class="fa-regular fa-user" style="margin-inline-end:.3rem;"></i> Mr. Ethan Blake</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-head"><h2>Attendance Overview</h2><span class="badge badge-success">96% Overall</span></div>
+        <div class="panel-body">
+            <div style="display:flex;flex-direction:column;gap:1.5rem;">
+                <div>
+                    <div style="display:flex;justify-content:space-between;margin-bottom:.5rem;"><span class="font-bold">Mathematics</span><span class="text-2">97%</span></div>
+                    <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="height:100%;width:97%;background:var(--primary);"></div></div>
+                </div>
+                <div>
+                    <div style="display:flex;justify-content:space-between;margin-bottom:.5rem;"><span class="font-bold">Science</span><span class="text-2">94%</span></div>
+                    <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="height:100%;width:94%;background:var(--secondary);"></div></div>
+                </div>
+                <div>
+                    <div style="display:flex;justify-content:space-between;margin-bottom:.5rem;"><span class="font-bold">English</span><span class="text-2">96%</span></div>
+                    <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="height:100%;width:96%;background:var(--accent);"></div></div>
+                </div>
+                <div>
+                    <div style="display:flex;justify-content:space-between;margin-bottom:.5rem;"><span class="font-bold">Computer Science</span><span class="text-2">98%</span></div>
+                    <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="height:100%;width:98%;background:var(--success);"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="grid g-2 mb-4" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+    <section class="panel">
+        <div class="panel-head"><h2>Upcoming Tests</h2><a href="student-tests.html" class="btn btn-sm btn-outline">View All</a></div>
+        <div class="panel-body flush">
+            <div class="table-responsive">
+                <table class="data">
+                    <thead><tr><th>Subject</th><th>Test Title</th><th>Date</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>Mathematics</td><td>Trigonometry Assessment</td><td>18 Aug 2026, 10:00 AM</td><td><span class="badge badge-warning">Upcoming</span></td></tr>
+                        <tr><td>Science</td><td>Physics Unit Test</td><td>22 Aug 2026, 11:30 AM</td><td><span class="badge badge-warning">Upcoming</span></td></tr>
+                        <tr><td>English</td><td>Grammar Assessment</td><td>27 Aug 2026, 09:30 AM</td><td><span class="badge badge-warning">Upcoming</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-head"><h2>Recent Study Materials</h2><a href="student-materials.html" class="btn btn-sm btn-outline">View All</a></div>
+        <div class="panel-body flush">
+            <div class="table-responsive">
+                <table class="data">
+                    <thead><tr><th>Subject</th><th>Material</th><th>Format</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr><td>Mathematics</td><td>Trigonometry Practice Notes<br><span class="text-sm text-2">Updated 12 Aug 2026</span></td><td><span class="badge" style="background:#ef4444;color:#fff;">PDF</span></td><td><button class="btn btn-sm btn-outline" onclick="alert('Downloading...')">Download</button></td></tr>
+                        <tr><td>Physics</td><td>Motion & Force Revision Notes<br><span class="text-sm text-2">Updated 10 Aug 2026</span></td><td><span class="badge" style="background:#ef4444;color:#fff;">PDF</span></td><td><button class="btn btn-sm btn-outline" onclick="alert('Downloading...')">Download</button></td></tr>
+                        <tr><td>Computer Science</td><td>Python Loops Worksheet<br><span class="text-sm text-2">Updated 08 Aug 2026</span></td><td><span class="badge" style="background:#ef4444;color:#fff;">PDF</span></td><td><button class="btn btn-sm btn-outline" onclick="alert('Downloading...')">Download</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="grid g-3 mb-4" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+    <section class="panel">
+        <div class="panel-head"><h2>Recent Results</h2><a href="student-results.html" class="btn btn-sm btn-outline">View All</a></div>
+        <div class="panel-body">
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1rem;">
+                <li style="display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--border);">
+                    <div><p class="font-bold">Mathematics</p><p class="text-sm text-2">Trigonometry Test</p></div>
+                    <span class="badge badge-success" style="font-size:1rem;padding:.4rem .8rem;">92%</span>
+                </li>
+                <li style="display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--border);">
+                    <div><p class="font-bold">Science</p><p class="text-sm text-2">Physics Unit Test</p></div>
+                    <span class="badge badge-success" style="font-size:1rem;padding:.4rem .8rem;">88%</span>
+                </li>
+                <li style="display:flex;justify-content:space-between;align-items:center;">
+                    <div><p class="font-bold">English</p><p class="text-sm text-2">Grammar Assessment</p></div>
+                    <span class="badge badge-success" style="font-size:1rem;padding:.4rem .8rem;">95%</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-head"><h2>Latest Announcements</h2><a href="student-announcements.html" class="btn btn-sm btn-outline">View All</a></div>
+        <div class="panel-body">
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1rem;">
+                <li>
+                    <a href="student-announcements.html" style="text-decoration:none;display:block;padding:1rem;border:1px solid var(--border);border-radius:var(--r-md);transition:border 0.2s;">
+                        <h3 style="font-size:1rem;color:var(--text);margin:0 0 .25rem;">Parent–Tutor Meeting</h3>
+                        <p class="text-sm text-2"><i class="fa-regular fa-calendar" style="margin-inline-end:.3rem;"></i> 20 Aug 2026</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="student-announcements.html" style="text-decoration:none;display:block;padding:1rem;border:1px solid var(--border);border-radius:var(--r-md);transition:border 0.2s;">
+                        <h3 style="font-size:1rem;color:var(--text);margin:0 0 .25rem;">New Mathematics study material</h3>
+                        <p class="text-sm text-2"><i class="fa-regular fa-calendar" style="margin-inline-end:.3rem;"></i> 14 Aug 2026</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="student-announcements.html" style="text-decoration:none;display:block;padding:1rem;border:1px solid var(--border);border-radius:var(--r-md);transition:border 0.2s;">
+                        <h3 style="font-size:1rem;color:var(--text);margin:0 0 .25rem;">Science revision session scheduled</h3>
+                        <p class="text-sm text-2"><i class="fa-regular fa-calendar" style="margin-inline-end:.3rem;"></i> 13 Aug 2026</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-head"><h2>Quick Actions</h2></div>
+        <div class="panel-body">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                <a href="student-subjects.html" class="btn btn-outline" style="flex-direction:column;padding:1.5rem 1rem;gap:.5rem;"><i class="fa-solid fa-book" style="font-size:1.5rem;"></i> View Subjects</a>
+                <a href="student-schedule.html" class="btn btn-outline" style="flex-direction:column;padding:1.5rem 1rem;gap:.5rem;"><i class="fa-regular fa-calendar-days" style="font-size:1.5rem;"></i> View Schedule</a>
+                <a href="student-attendance.html" class="btn btn-outline" style="flex-direction:column;padding:1.5rem 1rem;gap:.5rem;"><i class="fa-regular fa-circle-check" style="font-size:1.5rem;"></i> Check Attendance</a>
+                <a href="student-materials.html" class="btn btn-outline" style="flex-direction:column;padding:1.5rem 1rem;gap:.5rem;"><i class="fa-solid fa-folder-open" style="font-size:1.5rem;"></i> Study Materials</a>
+                <a href="student-tests.html" class="btn btn-outline" style="flex-direction:column;padding:1.5rem 1rem;gap:.5rem;"><i class="fa-regular fa-file-lines" style="font-size:1.5rem;"></i> Upcoming Tests</a>
+                <a href="student-results.html" class="btn btn-outline" style="flex-direction:column;padding:1.5rem 1rem;gap:.5rem;"><i class="fa-solid fa-chart-line" style="font-size:1.5rem;"></i> View Results</a>
+            </div>
+        </div>
+    </section>
+</div>
+</main>
+
+  </div>
+</div>
+<div class="toast" data-toast role="status" aria-live="polite"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><p>Done.</p></div>
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/session.js"></script>
+</body>
+</html>
+

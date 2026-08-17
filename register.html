@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create Your Account | LearnSphere Tutoring Centre</title>
+<meta name="description" content="Create a LearnSphere student account to enrol in batches and track schedules, attendance and results.">
+<meta name="theme-color" content="#145dc4">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Create Your Account | LearnSphere">
+<meta property="og:description" content="Create a LearnSphere student account to enrol in batches and track schedules, attendance and results.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<script src="assets/js/main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<main id="main" class="auth-wrap">
+  <section class="auth-aside">
+    <div class="aside-bg"><img src="assets/images/about.jpg" alt="" width="1600" height="1000"></div>
+    <div>
+      <a class="nav-brand" href="index.html" aria-label="LearnSphere home">
+        <img class="brand-mark" src="assets/images/logo.svg" alt="" width="40" height="40">
+        <span class="brand-text">
+          <span class="brand-name">LearnSphere</span>
+          <span class="brand-tag">Tutoring Centre</span>
+        </span>
+      </a>
+      <h2 style="margin-top:2rem;">Join a batch that fits</h2>
+      
+      <ul><li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Free first assessment</span></li><li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Small batches, capped seats</span></li><li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Cancel any month with two weeks' notice</span></li></ul>
+    </div>
+  </section>
+  <section class="auth-panel">
+    
+    <div class="auth-controls">
+      <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+        <i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
+      </button>
+      <button class="icon-btn lang-btn" type="button" data-dir-toggle aria-label="Switch layout">
+        <i class="fa-solid fa-language" aria-hidden="true"></i><span data-dir-label>RTL</span>
+      </button>
+    </div>
+    <div class="auth-card">
+      <a class="auth-brand" href="index.html" aria-label="LearnSphere home">
+        <img class="brand-mark" src="assets/images/logo.svg" alt="" width="40" height="40">
+        <span class="brand-text">
+          <span class="brand-name">LearnSphere</span>
+          <span class="brand-tag">Tutoring Centre</span>
+        </span>
+      </a>
+      <h1 style="font-size:1.7rem;">Create Your Account</h1>
+      <p>Register once and manage enrolment, schedules and results in your dashboard.</p>
+      <form class="form" id="register-form" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label class="label" for="r-first">First name <span class="req" aria-hidden="true">*</span></label>
+            <div class="control has-icon"><i class="fa-regular fa-user field-icon" aria-hidden="true"></i>
+              <input class="input" id="r-first" name="first_name" type="text" placeholder="First name" autocomplete="given-name" required></div>
+          </div>
+          <div class="field">
+            <label class="label" for="r-last">Last name <span class="req" aria-hidden="true">*</span></label>
+            <div class="control has-icon"><i class="fa-regular fa-user field-icon" aria-hidden="true"></i>
+              <input class="input" id="r-last" name="last_name" type="text" placeholder="Last name" autocomplete="family-name" required></div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label" for="r-email">Email address <span class="req" aria-hidden="true">*</span></label>
+          <div class="control has-icon"><i class="fa-regular fa-envelope field-icon" aria-hidden="true"></i>
+            <input class="input" id="r-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label class="label" for="r-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+            <div class="control has-icon"><i class="fa-solid fa-phone field-icon" aria-hidden="true"></i>
+              <input class="input" id="r-phone" name="phone" type="tel" placeholder="Your phone number" autocomplete="tel" required></div>
+          </div>
+          <div class="field">
+            <label class="label" for="r-grade">Grade / Class <span class="req" aria-hidden="true">*</span></label>
+            <div class="control has-icon is-select"><i class="fa-solid fa-layer-group field-icon" aria-hidden="true"></i>
+              <select class="select" id="r-grade" name="grade" required><option value="">Select class</option><option value="Class 1">Class 1</option><option value="Class 2">Class 2</option><option value="Class 3">Class 3</option><option value="Class 4">Class 4</option><option value="Class 5">Class 5</option><option value="Class 6">Class 6</option><option value="Class 7">Class 7</option><option value="Class 8">Class 8</option><option value="Class 9">Class 9</option><option value="Class 10">Class 10</option><option value="Class 11">Class 11</option><option value="Class 12">Class 12</option></select></div>
+          </div>
+        </div>
+        <div class="field">
+        <label class="label" for="r-password">Password <span class="req" aria-hidden="true">*</span></label>
+        <div class="control has-icon has-action">
+          <i class="fa-solid fa-lock field-icon" aria-hidden="true"></i>
+          <input class="input" id="r-password" name="r-password" type="password" placeholder="Create a password" autocomplete="new-password" required>
+          <button class="field-action" type="button" data-toggle-password aria-label="Show password"><i class="fa-regular fa-eye" aria-hidden="true"></i></button>
+        </div>
+      </div>
+        <div class="field">
+        <label class="label" for="r-confirm">Confirm password <span class="req" aria-hidden="true">*</span></label>
+        <div class="control has-icon has-action">
+          <i class="fa-solid fa-lock field-icon" aria-hidden="true"></i>
+          <input class="input" id="r-confirm" name="r-confirm" type="password" placeholder="Repeat your password" autocomplete="new-password" required>
+          <button class="field-action" type="button" data-toggle-password aria-label="Show password"><i class="fa-regular fa-eye" aria-hidden="true"></i></button>
+        </div>
+      </div>
+        <label class="check" for="r-terms"><input type="checkbox" id="r-terms" name="terms" required><span>I agree to the Terms of Service and the Privacy Policy.</span></label>
+        <button class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa-solid fa-user-plus" aria-hidden="true"></i>Create Account</button>
+        <p class="form-note">Already registered? <a href="login.html">Login</a></p>
+      </form>
+    </div>
+  </section>
+</main>
+<div class="toast" data-toast role="status" aria-live="polite"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><p>Done.</p></div>
+<script src="assets/js/session.js"></script>
+</body>
+</html>
+
