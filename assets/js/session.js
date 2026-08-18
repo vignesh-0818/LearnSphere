@@ -34,11 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // 2. Auth Pages logic
-    if (path.includes('login.html') || path.includes('register.html') || path.includes('signup.html')) {
+    if (path.includes('login.html') || path.includes('register.html') || path.includes('signup.html') || path.includes('admin-login.html')) {
         if (currentUser) {
             window.location.href = currentUser.role === 'ADMIN' ? 'admin-dashboard.html' : 'student-dashboard.html';
             return;
         }
+        
+        // Force clear inputs on load to prevent any browser autofill or saved credentials from appearing
+        const emailInputs = document.querySelectorAll('input[type="email"]');
+        const passInputs = document.querySelectorAll('input[type="password"]');
+        emailInputs.forEach(input => input.value = '');
+        passInputs.forEach(input => input.value = '');
         
         // Handle Registration
         const regForm = document.getElementById('register-form') || document.getElementById('admin-register-form');
