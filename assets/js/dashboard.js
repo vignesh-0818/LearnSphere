@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     else el.textContent = user.name;
                 });
                 classEls.forEach(el => {
-                    const roleText = user.role === 'admin' ? 'Administrator' : (user.class || 'Student');
+                    const roleText = user.role === 'ADMIN' ? 'Administrator' : (user.class || 'Student');
                     if(el.tagName === 'INPUT') el.value = roleText;
                     else el.textContent = roleText;
                 });

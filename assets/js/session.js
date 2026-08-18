@@ -5,8 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let usersStr = localStorage.getItem('learnsphere_users');
     let users = usersStr ? JSON.parse(usersStr) : {};
     
+    // Normalize existing roles
+    Object.values(users).forEach(user => {
+        if (user.role === 'admin') user.role = 'ADMIN';
+        if (user.role === 'student') user.role = 'CUSTOMER';
+    });
+    
     const currentUserStr = localStorage.getItem('currentUser');
     const currentUser = currentUserStr ? JSON.parse(currentUserStr) : null;
+    if (currentUser) {
+        if (currentUser.role === 'admin') currentUser.role = 'ADMIN';
+        if (currentUser.role === 'student') currentUser.role = 'CUSTOMER';
+    }
+    
     const path = window.location.pathname.toLowerCase();
     
     // Handle Pricing Plan Clicks
@@ -25,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Auth Pages logic
     if (path.includes('login.html') || path.includes('register.html') || path.includes('signup.html')) {
         if (currentUser) {
-            window.location.href = currentUser.role === 'admin' ? 'admin-dashboard.html' : 'student-dashboard.html';
+            window.location.href = currentUser.role === 'ADMIN' ? 'admin-dashboard.html' : 'student-dashboard.html';
             return;
         }
         
@@ -46,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     phone: fd.get('phone') || '',
                     class: fd.get('grade') || 'Not specified',
                     password: fd.get('r-password') || fd.get('ar-password'),
-                    role: isAdmin ? 'admin' : 'student'
+                    role: isAdmin ? 'ADMIN' : 'CUSTOMER'
                 };
                 localStorage.setItem('learnsphere_users', JSON.stringify(users));
                 window.location.href = isAdmin ? 'admin-login.html' : 'login.html';
@@ -65,13 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isAdminLogin = loginForm.id === 'admin-login-form';
                 
                 if (users[email] && users[email].password === pswd) {
+                    const userRole = users[email].role;
+                    if (isAdminLogin && userRole !== 'ADMIN') {
+                        alert('You do not have administrator access.');
+                        return;
+                    }
+                    if (!isAdminLogin && userRole === 'ADMIN') {
+                        alert('Admins must log in through the admin portal.');
+                        return;
+                    }
                     localStorage.setItem('currentUser', JSON.stringify(users[email]));
                     const intended = localStorage.getItem('intendedDestination');
                     if (intended) {
                         localStorage.removeItem('intendedDestination');
                         window.location.href = intended;
                     } else {
-                        window.location.href = users[email].role === 'admin' ? 'admin-dashboard.html' : 'index.html';
+                        window.location.href = userRole === 'ADMIN' ? 'admin-dashboard.html' : 'student-dashboard.html';
                     }
                 } else if (users[email]) {
                     alert('Incorrect password for ' + email);
@@ -83,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         phone: '9876543210',
                         class: isAdminLogin ? 'Not specified' : 'Class 10',
                         password: pswd,
-                        role: isAdminLogin ? 'admin' : 'student'
+                        role: isAdminLogin ? 'ADMIN' : 'CUSTOMER'
                     };
                     localStorage.setItem('currentUser', JSON.stringify(demoUser));
                     const intended = localStorage.getItem('intendedDestination');
@@ -91,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         localStorage.removeItem('intendedDestination');
                         window.location.href = intended;
                     } else {
-                        window.location.href = isAdminLogin ? 'admin-dashboard.html' : 'index.html';
+                        window.location.href = isAdminLogin ? 'admin-dashboard.html' : 'student-dashboard.html';
                     }
                 }
             });
@@ -103,10 +123,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // 3. Protect & Populate Dashboard pages
-    if (path.includes('student-') || path.includes('admin-')) {
+    if (path.includes('student-') || path.includes('admin-') || path.includes('customer-')) {
         if (!path.includes('login') && !path.includes('register')) {
             if (!currentUser) {
                 window.location.href = path.includes('admin-') ? 'admin-login.html' : 'login.html';
+                return;
+            }
+            
+            const isAdminRoute = path.includes('admin-');
+            if (isAdminRoute && currentUser.role !== 'ADMIN') {
+                window.location.href = 'student-dashboard.html';
+                return;
+            }
+            if (!isAdminRoute && currentUser.role === 'ADMIN') {
+                window.location.href = 'admin-dashboard.html';
                 return;
             }
             
