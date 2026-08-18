@@ -73,8 +73,8 @@ html[data-theme="light"] {
   --hero-scrim: linear-gradient(100deg, rgba(8,20,42,.92) 0%, rgba(8,20,42,.78) 45%, rgba(8,20,42,.52) 100%);
   --hero-text: #ffffff;
   --hero-text-2: rgba(255,255,255,.86);
-  --footer-bg: #020F26;
-  --footer-bottom-bg: #020F26;
+  --footer-bg: #0B1220;
+  --footer-bottom-bg: #0B1220;
   --footer-text: #FFFFFF;
   --footer-text-2: #B8C4D9;
   --footer-border: #16345C;
@@ -105,8 +105,8 @@ html[data-theme="dark"] {
   --hero-scrim: linear-gradient(100deg, rgba(4,10,20,.94) 0%, rgba(4,10,20,.86) 45%, rgba(4,10,20,.66) 100%);
   --hero-text: #f5f9ff;
   --hero-text-2: rgba(233,241,252,.82);
-  --footer-bg: #020F26;
-  --footer-bottom-bg: #020F26;
+  --footer-bg: #0B1220;
+  --footer-bottom-bg: #0B1220;
   --footer-text: #FFFFFF;
   --footer-text-2: #B8C4D9;
   --footer-border: #16345C;
