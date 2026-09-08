@@ -216,19 +216,25 @@
           <input class="input" id="side-search" type="search" placeholder="Search articles" data-search-input data-search-target="#post-grid">
         </div>
       </div>
-      <div class="widget"><h3>Categories</h3>
-<ul  style="list-style:none; padding:0; display:flex; flex-direction:column; gap:.5rem;">
-<li></li>
-<li><a href="blog.html?category=exam-prep" class="chip" style="width:100%; justify-content:space-between;"   data-category-link="exam-prep" ><span>Exam Preparation</span><span class="badge badge-muted">9</span></a></li>
-<li><a href="blog.html?category=mathematics" class="chip" style="width:100%; justify-content:space-between;"   data-category-link="mathematics" ><span>Mathematics</span><span class="badge badge-muted">7</span></a></li>
-<li><a href="blog.html?category=science" class="chip" style="width:100%; justify-content:space-between;"   data-category-link="science" ><span>Science Learning</span><span class="badge badge-muted">6</span></a></li>
-<li><a href="blog.html?category=parent-guidance" class="chip" style="width:100%; justify-content:space-between;"   data-category-link="parent-guidance" ><span>Parent Guidance</span><span class="badge badge-muted">5</span></a></li>
-<li><a href="blog.html?category=time-management" class="chip" style="width:100%; justify-content:space-between;"   data-category-link="time-management" ><span>Time Management</span><span class="badge badge-muted">4</span></a></li>
-<li></li>
-</ul></div>
-      <div class="widget"><h3>Recent posts</h3><ul style="gap:.9rem;"><li><a class="mini-post" href="blog-details-exam-prep.html"><img src="assets/images/blog-2.jpg" alt="" loading="lazy" width="1200" height="800"><span class="min-w-0"><strong class="clamp-2">Exam Preparation: The Last 30 Days Checklist</strong><span>05 Aug 2026</span></span></a></li><li><a class="mini-post" href="blog-details-maths.html"><img src="assets/images/five-mathematics-habits-new.png" alt="" loading="lazy" width="1200" height="800"><span class="min-w-0"><strong class="clamp-2">Five Mathematics Habits of Confident Students</strong><span>20 Jul 2026</span></span></a></li><li><a class="mini-post" href="blog-details-science.html"><img src="assets/images/making-science-stick-new.png" alt="" loading="lazy" width="1200" height="800"><span class="min-w-0"><strong class="clamp-2">Making Science Stick with Everyday Experiments</strong><span>14 Jul 2026</span></span></a></li></ul></div>
+      <div class="widget">
+        <h3>Categories</h3>
+        <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:.5rem;">
+          <li><a href="blog.html?category=exam-prep" class="widget-link" data-category-link="exam-prep"><span>Exam Preparation</span><span class="category-count">9</span></a></li>
+          <li><a href="blog.html?category=mathematics" class="widget-link" data-category-link="mathematics"><span>Mathematics</span><span class="category-count">7</span></a></li>
+          <li><a href="blog.html?category=science" class="widget-link" data-category-link="science"><span>Science Learning</span><span class="category-count">6</span></a></li>
+          <li><a href="blog.html?category=parent-guidance" class="widget-link" data-category-link="parent-guidance"><span>Parent Guidance</span><span class="category-count">5</span></a></li>
+          <li><a href="blog.html?category=time-management" class="widget-link" data-category-link="time-management"><span>Time Management</span><span class="category-count">4</span></a></li>
+        </ul>
       </div>
-      <div class="widget" style="margin-top: 3rem;">
+      <div class="widget">
+        <h3>Recent posts</h3>
+        <ul style="gap:.9rem;">
+          <li><a class="mini-post" href="blog-details-exam-prep.html"><img src="assets/images/blog-2.jpg" alt="" loading="lazy" width="1200" height="800"><span class="min-w-0"><strong class="clamp-2">Exam Preparation: The Last 30 Days Checklist</strong><span>05 Aug 2026</span></span></a></li>
+          <li><a class="mini-post" href="blog-details-maths.html"><img src="assets/images/five-mathematics-habits-new.png" alt="" loading="lazy" width="1200" height="800"><span class="min-w-0"><strong class="clamp-2">Five Mathematics Habits of Confident Students</strong><span>20 Jul 2026</span></span></a></li>
+          <li><a class="mini-post" href="blog-details-science.html"><img src="assets/images/making-science-stick-new.png" alt="" loading="lazy" width="1200" height="800"><span class="min-w-0"><strong class="clamp-2">Making Science Stick with Everyday Experiments</strong><span>14 Jul 2026</span></span></a></li>
+        </ul>
+      </div>
+      <div class="widget">
         <h3>Newsletter</h3>
         <p style="font-size:.9rem;">Monthly newsletter for parents and students. No spam.</p>
         <form class="form" data-demo-form="Thanks for subscribing — this is a demo form." novalidate>
@@ -239,7 +245,7 @@
               <input class="input" id="side-news" name="email" type="email" placeholder="you@example.com" required>
             </div>
           </div>
-          <button class="btn btn-primary btn-block" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Subscribe</button>
+          <button class="btn btn-primary btn-sm newsletter-compact-btn" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Subscribe</button>
         </form>
       </div>
     </aside>

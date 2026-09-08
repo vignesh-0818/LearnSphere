@@ -38,7 +38,7 @@
     storedTheme = localStorage.getItem(STORE_THEME);
     storedDir = localStorage.getItem(STORE_DIR);
   } catch (e) {}
-  applyTheme(storedTheme || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+  applyTheme(storedTheme || "light");
   applyDir(storedDir || "ltr");
 
   document.addEventListener("click", function (e) {
@@ -560,6 +560,9 @@
         });
       }, { threshold: 0.12 });
       revealables.forEach(function (el) { io.observe(el); });
+      setTimeout(function () {
+        revealables.forEach(function (el) { el.classList.add("is-visible"); });
+      }, 500);
     } else {
       revealables.forEach(function (el) { el.classList.add("is-visible"); });
     }

@@ -1240,14 +1240,25 @@ table.data tbody tr:hover { background: var(--bg-soft); }
 }
 
 .footer-brand-new .brand-mark {
-  margin-block-end: 1rem;
+  margin: 0;
+  display: block;
 }
 
 .footer-brand-new .brand-text-container {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   margin-block-end: 1rem;
+}
+.footer-brand-new .brand-text-container .brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.footer-brand-new .brand-text-container .brand-name {
+  line-height: 1;
+  display: flex;
+  align-items: center;
 }
 
 .footer-brand-new p {
@@ -1683,3 +1694,658 @@ html[data-theme="light"] .newsletter-form-group button {
 .tutor-detail-btn-wrap {
   margin-top: auto;
 }
+
+/* ==========================================================================
+   SPACING, ALIGNMENT & RESPONSIVE DESIGN HARMONIZATION
+   ========================================================================== */
+
+/* 1. Global Page Overflow Protection */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* 2. Harmonized Section Spacing & Hierarchy */
+.section {
+  padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
+}
+.section-tight {
+  padding-block: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+}
+.section-head {
+  max-width: 680px;
+  margin-inline: auto;
+  text-align: center;
+  margin-bottom: clamp(2rem, 1.5rem + 1.5vw, 3rem);
+}
+.section-head.start {
+  margin-inline: 0;
+  text-align: start;
+}
+.section-head .eyebrow {
+  margin-bottom: 0.65rem;
+}
+.section-head h2 {
+  margin-bottom: 0.75rem;
+  line-height: 1.22;
+}
+.section-head p {
+  color: var(--text-2);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* Standardized Section Bottom CTA Spacing */
+.section-cta-wrap,
+.text-center.mt-6 {
+  margin-top: clamp(2rem, 1.5rem + 1.5vw, 3rem) !important;
+  text-align: center;
+}
+
+/* 3. Universal Card Heights & Internal Flex Rhythm */
+.grid > .card,
+.grid > .course-card,
+.grid > .post-card,
+.grid > .plan,
+.grid > .quote,
+.grid > .tutor-card,
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.card-body {
+  padding: clamp(1.25rem, 1rem + 0.5vw, 1.6rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Home Second Section: Student Results Progress Alignment */
+.card-progress-wrap {
+  margin-top: auto;
+  padding-top: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Testimonial Quote Cards */
+.quote {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: clamp(1.25rem, 1rem + 0.5vw, 1.6rem);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  height: 100%;
+}
+.quote blockquote {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.quote figcaption {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-top: auto;
+  min-width: 0;
+  padding-top: var(--sp-3);
+  border-top: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+}
+
+/* Pricing Plan Cards */
+.plan {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.plan .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 1 auto;
+  padding: clamp(1.35rem, 1.1rem + 0.6vw, 1.75rem);
+}
+.plan .card-foot {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+.plan .check-list {
+  margin-top: 0.85rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0;
+  list-style: none;
+}
+.plan .check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+.plan .check-list li i {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+  color: var(--success);
+}
+
+/* Home "From the blog" Section & Blog Post Cards */
+.post-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.post-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 1 auto;
+}
+.post-card h3 {
+  min-height: 2.85rem;
+  line-height: 1.35;
+  margin-bottom: 0.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post-card p.clamp-3 {
+  min-height: 4.2rem;
+  line-height: 1.45;
+  margin-bottom: var(--sp-3);
+}
+.post-card .meta-row {
+  display: flex;
+  align-items: center;
+  gap: .3rem .65rem;
+  font-size: .8rem;
+  flex-wrap: nowrap;
+}
+.post-card .card-foot {
+  margin-top: auto;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+/* Home 2 (3rd Section) & Courses: Course Cards Alignment */
+.course-card,
+.card[data-category],
+#course-grid .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.course-card .card-body,
+.card[data-category] .card-body,
+#course-grid .card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 1 auto;
+}
+.course-card h3,
+.card[data-category] h3,
+#course-grid .card h3 {
+  min-height: 4rem;
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.course-card p.clamp-3,
+.card[data-category] p.clamp-3,
+#course-grid .card p.clamp-3 {
+  min-height: 4.4rem;
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
+}
+.course-card .meta-row,
+.card[data-category] .meta-row,
+#course-grid .card .meta-row {
+  margin-top: auto !important;
+  margin-bottom: var(--sp-3) !important;
+  padding-top: var(--sp-2);
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.45rem !important;
+  min-height: 52px;
+}
+.course-card .meta-row .meta,
+.card[data-category] .meta-row .meta,
+#course-grid .card .meta-row .meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  width: 100%;
+}
+.course-card .meta-row .meta i,
+.card[data-category] .meta-row .meta i,
+#course-grid .card .meta-row .meta i {
+  color: var(--primary);
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+}
+.course-card .card-foot,
+.card[data-category] .card-foot,
+#course-grid .card .card-foot {
+  margin-top: 0;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Tutor Cards Alignment (tutors.html, about.html) */
+#tutor-grid .card,
+.grid > article.card:has(.tutor-media) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#tutor-grid .card .card-body,
+.grid > article.card:has(.tutor-media) .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 1 auto;
+}
+#tutor-grid .card h3,
+.grid > article.card:has(.tutor-media) h3 {
+  margin-bottom: 0.35rem;
+}
+#tutor-grid .card .badge,
+.grid > article.card:has(.tutor-media) .badge {
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+}
+#tutor-grid .card p.clamp-3,
+.grid > article.card:has(.tutor-media) p.clamp-3 {
+  min-height: 4.2rem;
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
+}
+#tutor-grid .card .card-foot,
+.grid > article.card:has(.tutor-media) .card-foot {
+  margin-top: auto;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 4. Buttons & CTAs Alignment & Proportion */
+.btn {
+  vertical-align: middle;
+}
+.btn i, .btn .ico, .btn svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* 5. Forms: Spacing, Labels, Inputs & Checkbox Alignment */
+.form {
+  display: grid;
+  gap: 1.15rem;
+}
+.form-row {
+  display: grid;
+  gap: 1.15rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+.field {
+  display: grid;
+  gap: .45rem;
+  min-width: 0;
+}
+.label {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: .88rem;
+  color: var(--text);
+  text-align: start;
+}
+.contact-form .check,
+.form .check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.45;
+}
+.contact-form .check input[type="checkbox"],
+.form .check input[type="checkbox"] {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+.contact-cta-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.contact-cta-wrap .btn {
+  min-width: 220px;
+}
+
+/* 6. Blog Page: Sidebar Widgets & Category Alignment */
+.blog-layout {
+  display: grid;
+  gap: clamp(2rem, 1.5rem + 2vw, 3rem);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 992px) {
+  .blog-layout {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+}
+.widget {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: clamp(1.25rem, 1rem + 0.5vw, 1.5rem);
+  margin-bottom: clamp(1.25rem, 1rem + 0.5vw, 1.75rem);
+}
+.widget:last-child {
+  margin-bottom: 0;
+}
+.widget h3 {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+.widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: .45rem;
+}
+.widget li {
+  margin: 0;
+}
+.widget-link .badge,
+.chip .badge,
+.category-count {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 8px !important;
+  border-radius: var(--r-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  background: var(--bg-softer);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+html[data-theme="dark"] .widget-link .badge,
+html[data-theme="dark"] .chip .badge,
+html[data-theme="dark"] .category-count {
+  background: var(--surface-2);
+  color: var(--text-2);
+  border-color: var(--border-strong);
+}
+.widget-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  padding: .5rem .65rem;
+  border-radius: var(--r-sm);
+  transition: background var(--tr), color var(--tr);
+}
+.widget-link:hover {
+  background: var(--bg-softer);
+  color: var(--primary);
+}
+.mini-post {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: .85rem;
+  align-items: center;
+}
+.mini-post img {
+  width: 64px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--r-sm);
+}
+.mini-post strong {
+  display: block;
+  font-size: .88rem;
+  font-family: var(--font-head);
+  color: var(--text);
+  line-height: 1.35;
+}
+.mini-post span {
+  font-size: .78rem;
+  color: var(--text-3);
+  margin-top: 0.2rem;
+  display: block;
+}
+.newsletter-compact-btn,
+.widget .form button.btn-compact {
+  width: auto;
+  align-self: flex-start;
+  padding: .55rem 1.3rem;
+  font-size: .88rem;
+}
+
+/* 7. Footer Brand & Layout Alignment */
+.site-footer {
+  background: var(--footer-bg);
+  color: var(--footer-text-2);
+  padding-block: clamp(3rem, 2rem + 3vw, 4.5rem) var(--sp-5);
+  margin-top: auto;
+}
+.site-footer h3 {
+  color: var(--footer-text);
+  font-size: 1.05rem;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+}
+.footer-brand-new .brand-mark {
+  margin: 0;
+  display: block;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+.footer-brand-new .brand-text-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-block-end: 1.25rem;
+}
+.footer-brand-new .brand-text-container .brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.footer-brand-new .brand-text-container .brand-name {
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.footer-grid {
+  display: grid;
+  gap: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  grid-template-columns: 1fr;
+  text-align: start;
+}
+@media (min-width: 620px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1000px) {
+  .footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+  }
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: .65rem;
+}
+.footer-links li {
+  margin: 0;
+}
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: .94rem;
+}
+.footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--sp-4);
+  display: grid;
+  gap: .85rem;
+}
+
+/* 8. Responsive Navbar Refinements (1024px, 768px, 360px) */
+@media (min-width: 992px) and (max-width: 1180px) {
+  .navbar {
+    gap: 0.5rem;
+  }
+  .nav-brand {
+    gap: 0.45rem;
+  }
+  .brand-name {
+    font-size: 1.15rem;
+  }
+  .nav-menu {
+    gap: 0.15rem;
+  }
+  .nav-link {
+    padding: .45rem .6rem;
+    font-size: .88rem;
+  }
+  .nav-actions {
+    gap: .4rem;
+    margin-inline-start: auto;
+  }
+  .nav-actions .nav-cta {
+    padding: .45rem .85rem;
+    font-size: .82rem;
+    gap: .35rem;
+  }
+  .nav-actions .icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .nav-actions .lang-btn {
+    width: auto;
+    min-width: 38px;
+    padding-inline: .65rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    gap: 0.5rem;
+  }
+  .nav-actions {
+    gap: 0.4rem;
+    margin-inline-start: auto;
+  }
+  .nav-toggle {
+    display: inline-grid;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  .grid.g-3, .grid.g-4 {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header .container,
+  .container {
+    padding-inline: 0.5rem;
+  }
+  .navbar {
+    gap: 0.25rem;
+  }
+  .nav-brand {
+    gap: 0.35rem;
+  }
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+  }
+  .brand-name {
+    font-size: 1rem;
+  }
+  .nav-actions {
+    gap: 0.25rem;
+    margin-inline-start: auto;
+  }
+  .nav-actions .icon-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
+  }
+  .nav-actions .lang-btn {
+    padding: 0;
+    width: 34px;
+    height: 34px;
+    display: inline-grid;
+    place-items: center;
+  }
+  .nav-actions .lang-btn [data-dir-label] {
+    display: none;
+  }
+  .nav-toggle {
+    display: inline-grid;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  .grid {
+    gap: 1.25rem;
+  }
+  .section-head {
+    margin-bottom: 1.75rem;
+  }
+  .card-body {
+    padding: 1.15rem;
+  }
+}
+
