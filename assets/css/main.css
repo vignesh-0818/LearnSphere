@@ -199,6 +199,7 @@ li { margin-bottom: .35rem; color: var(--text-2); }
 .g-4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
 
 .flex { display: flex; gap: var(--sp-3); }
+.flex-column { flex-direction: column; }
 .flex-wrap { flex-wrap: wrap; }
 .items-center { align-items: center; }
 .justify-between { justify-content: space-between; }
@@ -468,7 +469,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 }
 .nav-backdrop.is-open { opacity: 1; visibility: visible; }
 
-@media (max-width: 991px) {
+@media (max-width: 1180px) {
   .nav-toggle { display: inline-grid; }
   .nav-actions .nav-cta { display: none; }
 
@@ -521,7 +522,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
   .drawer-cta { display: grid; gap: .6rem; }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1181px) {
   .drawer-head, .drawer-tools, .drawer-cta { display: none !important; }
   .nav-drawer { display: contents; }
 }
@@ -1099,6 +1100,11 @@ table.data tbody tr:hover { background: var(--bg-soft); }
 .dash-content { padding: var(--sp-5) var(--sp-4) var(--sp-7); display: grid; gap: var(--sp-5); }
 .dash-sidebar-toggle { display: inline-grid; }
 @media (min-width: 992px) { .dash-sidebar-toggle { display: none; } }
+
+/* Dashboard pages use document scrolling; only the sticky navigation may scroll internally. */
+body.student-dashboard-page { min-height: 100vh; overflow-x: hidden; }
+.student-dashboard-page .dash { min-height: 100vh; overflow: visible; }
+.student-dashboard-page .dash-main { min-width: 0; overflow: visible; }
 
 .kpi { display: flex; align-items: flex-start; gap: var(--sp-4); padding: var(--sp-5); }
 .kpi .kpi-txt { min-width: 0; }
@@ -2162,6 +2168,21 @@ html[data-theme="dark"] .category-count {
   font-size: .88rem;
 }
 
+/* Keep the Blog subscription card in proportion with its sidebar siblings. */
+.newsletter-widget {
+  padding: 1rem 1.1rem;
+  margin-bottom: 0;
+}
+.newsletter-widget h3 { margin-bottom: .45rem; }
+.newsletter-widget > p { margin: 0 0 .75rem; line-height: 1.45; }
+.newsletter-widget .form { gap: .65rem; }
+.newsletter-widget .field { gap: .3rem; }
+.newsletter-widget .label { font-size: .8rem; }
+.newsletter-widget .input { padding-block: .6rem; font-size: .88rem; }
+.newsletter-widget .control.has-icon .input { padding-inline-start: 2.55rem; }
+.newsletter-widget .control > .field-icon { inset-inline-start: .85rem; font-size: .85rem; }
+.newsletter-widget .newsletter-compact-btn { padding: .5rem 1rem; font-size: .82rem; }
+
 /* 7. Footer Brand & Layout Alignment */
 .site-footer {
   background: var(--footer-bg);
@@ -2239,6 +2260,50 @@ html[data-theme="dark"] .category-count {
 }
 
 /* 8. Responsive Navbar Refinements (1024px, 768px, 360px) */
+/* Desktop header: let the primary menu occupy the middle and reserve a calm,
+   consistent control group on the right. */
+@media (min-width: 1181px) {
+  .navbar {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: clamp(1.5rem, 2.25vw, 2.4rem);
+    min-height: var(--header-h);
+  }
+  .nav-brand {
+    margin-inline-end: 0;
+  }
+  .nav-menu {
+    gap: .2rem;
+    justify-content: center;
+    margin: 0;
+  }
+  .nav-link {
+    padding: .55rem .7rem;
+  }
+  .nav-actions {
+    gap: .55rem;
+    margin-inline-start: 0;
+    justify-self: end;
+  }
+  .nav-actions .theme-toggle {
+    width: 40px;
+    height: 40px;
+  }
+  .nav-actions .lang-btn {
+    width: auto;
+    min-width: 64px;
+    height: 40px;
+    padding-inline: .7rem;
+    justify-content: center;
+  }
+  .nav-actions .nav-cta {
+    min-height: 40px;
+    padding: .52rem .72rem;
+    font-size: .82rem;
+    gap: .35rem;
+  }
+}
+
 @media (min-width: 992px) and (max-width: 1180px) {
   .navbar {
     gap: 0.5rem;

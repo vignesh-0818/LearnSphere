@@ -131,6 +131,40 @@
       border-bottom: none;
       padding-bottom: 0;
     }
+    .upcoming-classes-grid,
+    .recent-results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      min-width: 0;
+    }
+    .upcoming-classes-grid .schedule-item {
+      min-width: 0;
+      height: 100%;
+    }
+    .recent-result-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: .75rem;
+      min-width: 0;
+      padding: 0 0 .85rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .recent-result-item > div { min-width: 0; overflow-wrap: anywhere; }
+    .recent-result-item .badge { flex: 0 0 auto; }
+    .recent-results-grid .recent-result-item:last-of-type { border-bottom: 0; }
+    .recent-results-grid .recent-updates { grid-column: 1 / -1; min-width: 0; }
+    @media (max-width: 1280px) {
+      .upcoming-classes-grid,
+      .recent-results-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      .dash-panel { padding: 1rem; }
+      .dash-panel-head { align-items: flex-start; flex-wrap: wrap; }
+      .upcoming-classes-grid,
+      .recent-results-grid { grid-template-columns: minmax(0, 1fr); }
+    }
     .schedule-time-badge {
       background: var(--bg-softer);
       color: var(--primary);
@@ -199,7 +233,7 @@
     </div>
     <nav class="dash-nav">
       <p class="group-label">Overview</p>
-      <a class="dash-link is-active" href="dashboard.html"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i><span>Dashboard</span></a>
+      <a class="dash-link is-active" href="student-dashboard.html"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i><span>Dashboard</span></a>
       <a class="dash-link" href="student-subjects.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Enrolled Courses</span></a>
       <a class="dash-link" href="student-schedule.html"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i><span>Class Schedule</span></a>
       <a class="dash-link" href="student-attendance.html"><i class="fa-regular fa-circle-check" aria-hidden="true"></i><span>Attendance</span></a>
@@ -248,7 +282,7 @@
             <i class="fa-solid fa-chevron-down" style="font-size:11px;color:var(--text-2);"></i>
           </button>
           <div class="profile-dropdown-menu" id="session-user-dropdown" data-user-dropdown>
-            <a href="dashboard.html"><i class="fa-solid fa-gauge-high" style="margin-inline-end:.5rem;"></i>Dashboard</a>
+            <a href="student-dashboard.html"><i class="fa-solid fa-gauge-high" style="margin-inline-end:.5rem;"></i>Dashboard</a>
             <a href="student-subjects.html"><i class="fa-solid fa-book" style="margin-inline-end:.5rem;"></i>My Subjects</a>
             <a href="student-schedule.html"><i class="fa-regular fa-calendar-days" style="margin-inline-end:.5rem;"></i>Class Schedule</a>
             <a href="student-results.html"><i class="fa-solid fa-chart-line" style="margin-inline-end:.5rem;"></i>Test Results</a>
@@ -402,7 +436,7 @@
             <h3><i class="fa-regular fa-calendar-days" style="color:var(--primary);margin-inline-end:.4rem;"></i>Upcoming Classes</h3>
             <a href="student-schedule.html" class="btn btn-outline btn-sm">Full Timetable</a>
           </div>
-          <div class="flex flex-column" style="gap:1rem;">
+          <div class="upcoming-classes-grid">
             <div class="schedule-item">
               <div class="schedule-time-badge">
                 <div>TODAY</div>
@@ -459,9 +493,9 @@
             <h3><i class="fa-solid fa-chart-line" style="color:var(--primary);margin-inline-end:.4rem;"></i>Recent Results &amp; Activity</h3>
             <a href="student-results.html" class="btn btn-outline btn-sm">All Results</a>
           </div>
-          <div class="flex flex-column" style="gap:1rem;">
+          <div class="recent-results-grid">
             <!-- Result 1 -->
-            <div class="flex items-center justify-between" style="padding-bottom:.85rem;border-bottom:1px solid var(--border);">
+            <div class="recent-result-item">
               <div>
                 <strong style="display:block;font-size:0.95rem;">Mathematics Term Test</strong>
                 <span class="text-sm text-3">Trigonometry &amp; Algebra &middot; 05 Aug 2026</span>
@@ -470,7 +504,7 @@
             </div>
 
             <!-- Result 2 -->
-            <div class="flex items-center justify-between" style="padding-bottom:.85rem;border-bottom:1px solid var(--border);">
+            <div class="recent-result-item">
               <div>
                 <strong style="display:block;font-size:0.95rem;">Physics Unit Assessment</strong>
                 <span class="text-sm text-3">Kinematics &amp; Dynamics &middot; 28 Jul 2026</span>
@@ -479,7 +513,7 @@
             </div>
 
             <!-- Result 3 -->
-            <div class="flex items-center justify-between" style="padding-bottom:.85rem;border-bottom:1px solid var(--border);">
+            <div class="recent-result-item">
               <div>
                 <strong style="display:block;font-size:0.95rem;">English Reading Comprehension</strong>
                 <span class="text-sm text-3">Critical Analysis &middot; 20 Jul 2026</span>
@@ -488,7 +522,7 @@
             </div>
 
             <!-- Recent Activity Timeline -->
-            <div style="margin-top:.5rem;">
+            <div class="recent-updates" style="margin-top:.5rem;">
               <h4 style="font-size:.88rem;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;">Recent Updates</h4>
               <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem;font-size:0.88rem;">
                 <li class="flex items-center" style="gap:.6rem;">

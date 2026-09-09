@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Auth Pages logic
     if (path.includes('login.html') || path.includes('register.html') || path.includes('signup.html') || path.includes('admin-login.html')) {
         if (currentUser) {
-            window.location.href = currentUser.role === 'ADMIN' ? 'admin-dashboard.html' : 'dashboard.html';
+            window.location.href = currentUser.role === 'ADMIN' ? 'admin-dashboard.html' : 'student-dashboard.html';
             return;
         }
         
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         localStorage.removeItem('intendedDestination');
                         window.location.href = intended;
                     } else {
-                        window.location.href = userRole === 'ADMIN' ? 'admin-dashboard.html' : 'dashboard.html';
+                        window.location.href = userRole === 'ADMIN' ? 'admin-dashboard.html' : 'student-dashboard.html';
                     }
                 } else if (users[email]) {
                     alert('Incorrect password for ' + email);
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         localStorage.removeItem('intendedDestination');
                         window.location.href = intended;
                     } else {
-                        window.location.href = isAdminLogin ? 'admin-dashboard.html' : 'dashboard.html';
+                        window.location.href = isAdminLogin ? 'admin-dashboard.html' : 'student-dashboard.html';
                     }
                 }
             });
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeUser = currentUser || JSON.parse(localStorage.getItem('currentUser'));
             const isAdminRoute = path.includes('admin-');
             if (isAdminRoute && activeUser.role !== 'ADMIN') {
-                window.location.href = 'dashboard.html';
+                window.location.href = 'student-dashboard.html';
                 return;
             }
             if (!isAdminRoute && activeUser.role === 'ADMIN' && !path.includes('dashboard.html')) {
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                 } else {
                     linksHTML = `
-                        <a href="dashboard.html">Dashboard</a>
+                        <a href="student-dashboard.html">Dashboard</a>
                         <a href="student-subjects.html">My Subjects</a>
                         <a href="student-schedule.html">Class Schedule</a>
                         <a href="student-attendance.html">Attendance</a>
