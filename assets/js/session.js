@@ -11,14 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (user.role === 'student') user.role = 'CUSTOMER';
     });
     
+    const path = window.location.pathname.toLowerCase();
+    
+    // Check if the current page is the Home page (index.html, home-2.html, or root)
+    const isHomePage = path.endsWith('index.html') || path.endsWith('home-2.html') || path.endsWith('/') || path === '' || path.endsWith('/learnsphere-tutoring-html-template') || path.endsWith('/learnsphere-tutoring-html-template/');
+    if (isHomePage) {
+        // Ensure returning to the Home page loads directly in the clean public/logged-out state
+        localStorage.removeItem('currentUser');
+    }
+
     const currentUserStr = localStorage.getItem('currentUser');
     const currentUser = currentUserStr ? JSON.parse(currentUserStr) : null;
     if (currentUser) {
         if (currentUser.role === 'admin') currentUser.role = 'ADMIN';
         if (currentUser.role === 'student') currentUser.role = 'CUSTOMER';
     }
-    
-    const path = window.location.pathname.toLowerCase();
     
     // Handle Pricing Plan Clicks
     document.addEventListener('click', function(e) {
@@ -208,6 +215,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
             
+            // Handle Home / Back to Website navigation from Dashboard:
+            // Transition out of the active dashboard session directly to index.html in the public state
+            document.addEventListener('click', (e) => {
+                const link = e.target.closest('a');
+                if (!link) return;
+                const href = (link.getAttribute('href') || '').trim().toLowerCase();
+                if (href === 'index.html' || href === '../index.html' || href === './index.html' || href === '/' || href.endsWith('/index.html')) {
+                    localStorage.removeItem('currentUser');
+                }
+            });
+
             // Logout buttons in dash
             document.querySelectorAll('[data-action="logout"]').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -218,8 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // 4. Update Navbar on public pages (index, about, etc.)
-    if (!path.includes('student-') && !path.includes('admin-') && !path.includes('customer-') && !path.includes('login') && !path.includes('register')) {
+    // 4. Update Navbar on public pages (about, courses, etc. when authenticated)
+    if (!isHomePage && !path.includes('student-') && !path.includes('admin-') && !path.includes('customer-') && !path.includes('login') && !path.includes('register')) {
         if (currentUser) {
             // Hide normal CTA buttons
             document.querySelectorAll('.nav-cta').forEach(btn => btn.style.display = 'none');
@@ -306,5 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
 window.handleLogout = function(e) {
     if(e) e.preventDefault();
     localStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
+    const p = window.location.pathname.toLowerCase();
+    window.location.href = p.includes('/admin/') ? '../index.html' : 'index.html';
 }
