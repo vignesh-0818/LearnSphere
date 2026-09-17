@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentUserStr = localStorage.getItem('currentUser');
     const currentUser = currentUserStr ? JSON.parse(currentUserStr) : null;
     
-    const isDash = window.location.pathname.includes('student-') || window.location.pathname.includes('admin-') || window.location.pathname.includes('my-subjects') || window.location.pathname.includes('dashboard');
+    const isDash = !!document.querySelector('.dash') || window.location.pathname.includes('student') || window.location.pathname.includes('admin') || window.location.pathname.includes('dashboard');
     const isAuthPage = window.location.pathname.includes('login') || window.location.pathname.includes('register');
     
     if (isDash && !isAuthPage) {

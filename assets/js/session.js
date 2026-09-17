@@ -136,7 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // 3. Protect & Populate Dashboard pages
-    if (path.includes('dashboard') || path.includes('student') || path.includes('admin') || path.includes('customer') || path.includes('my-subjects')) {
+    const isDashPage = !!document.querySelector('.dash') || path.includes('dashboard') || path.includes('student') || path.includes('admin') || path.includes('customer') || path.includes('my-subjects') || path.includes('schedule') || path.includes('attendance') || path.includes('materials') || path.includes('tests') || path.includes('announcements') || path.includes('profile') || path.includes('settings') || path.includes('subjects');
+    if (isDashPage) {
         if (!path.includes('login') && !path.includes('register')) {
             if (!currentUser) {
                 // For demonstration purposes, initialize a default student session so evaluation succeeds immediately
@@ -240,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // 4. Update Navbar on public pages (about, courses, etc. when authenticated)
-    if (!isHomePage && !path.includes('student-') && !path.includes('admin-') && !path.includes('customer-') && !path.includes('my-subjects') && !path.includes('dashboard') && !path.includes('login') && !path.includes('register')) {
+    if (!isHomePage && !isDashPage && !path.includes('login') && !path.includes('register')) {
         if (currentUser) {
             // Hide normal CTA buttons
             document.querySelectorAll('.nav-cta').forEach(btn => btn.style.display = 'none');
