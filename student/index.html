@@ -31,8 +31,23 @@
       </a>
       <button class="icon-btn dash-sidebar-toggle" type="button" data-dash-toggle aria-label="Close sidebar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
     </div>
-    <nav class="dash-nav"><p class="group-label">Learning</p><a class="dash-link is-active" href="index.html" aria-current="page"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i><span>Dashboard</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>My Subjects</span></a><a class="dash-link" href="index.html"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i><span>Class Schedule</span></a><a class="dash-link" href="index.html"><i class="fa-regular fa-circle-check" aria-hidden="true"></i><span>Attendance</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-folder-open" aria-hidden="true"></i><span>Study Materials</span><span class="pill">4</span></a><p class="group-label">Assessment</p><a class="dash-link" href="index.html"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Upcoming Tests</span><span class="pill">2</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>Results</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i><span>Announcements</span></a><p class="group-label">Account</p><a class="dash-link" href="index.html"><i class="fa-regular fa-user" aria-hidden="true"></i><span>Profile</span></a><a class="dash-link" href="index.html"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></a></nav>
-    <a class="dash-link" href="../login.html" style="margin-top:auto;color:var(--danger);"><i class="fa-solid fa-right-from-bracket ico-dir" aria-hidden="true"></i><span>Logout</span></a>
+    <nav class="dash-nav">
+<p class="group-label">Learning</p>
+<a class="dash-link is-active" href="../student-dashboard.html"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i><span>Dashboard</span></a>
+<a class="dash-link" href="../student-subjects.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>My Subjects</span></a>
+<a class="dash-link" href="../student-schedule.html"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i><span>Class Schedule</span></a>
+<a class="dash-link" href="../student-attendance.html"><i class="fa-regular fa-circle-check" aria-hidden="true"></i><span>Attendance</span></a>
+<a class="dash-link" href="../student-materials.html"><i class="fa-solid fa-folder-open" aria-hidden="true"></i><span>Study Materials</span></a>
+<p class="group-label">Assessment</p>
+<a class="dash-link" href="../student-tests.html"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Upcoming Tests</span></a>
+<a class="dash-link" href="../student-results.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>Results</span></a>
+<a class="dash-link" href="../student-announcements.html"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i><span>Announcements</span></a>
+<p class="group-label">Account</p>
+<a class="dash-link" href="../student-profile.html"><i class="fa-regular fa-user" aria-hidden="true"></i><span>Profile</span></a>
+<a class="dash-link" href="../student-settings.html"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></a>
+<a class="dash-link" href="../index.html" style="margin-top:2rem;"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i><span>Back to Website</span></a>
+<a class="dash-link" href="#" data-action="logout" style="margin-top:auto;color:var(--danger);"><i class="fa-solid fa-right-from-bracket ico-dir" aria-hidden="true"></i><span>Logout</span></a>
+</nav>
   </aside>
   <div class="dash-main">
     <header class="dash-topbar">
@@ -75,7 +90,7 @@
     <div class="grid" style="grid-template-columns:1fr;gap:var(--sp-5);">
       <div class="grid g-2" style="align-items:start;">
         <section class="panel reveal">
-          <div class="panel-head"><h2>Today's schedule</h2><a class="btn btn-outline btn-sm" href="index.html">Full timetable</a></div>
+          <div class="panel-head"><h2>Today's schedule</h2><a class="btn btn-outline btn-sm" href="../student-schedule.html">Full timetable</a></div>
           <div class="panel-body">
             <ul class="timeline">
               <li><span class="dot"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i></span><span class="min-w-0"><strong>Mathematics — Trigonometry practice</strong><span>16:00 – 17:30 · Room 2 · Ms. Amelia Hart</span></span></li><li><span class="dot"><i class="fa-solid fa-atom" aria-hidden="true"></i></span><span class="min-w-0"><strong>Physics — Motion numericals</strong><span>17:45 – 19:00 · Room 4 · Mr. Daniel Okafor</span></span></li><li><span class="dot"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></span><span class="min-w-0"><strong>Computer Science — Python loops</strong><span>19:10 – 20:00 · Lab · Mr. Ethan Blake</span></span></li>
@@ -94,7 +109,7 @@
       </div>
 
       <section class="panel reveal">
-        <div class="panel-head"><h2>My subjects &amp; batch timings</h2><a class="btn btn-outline btn-sm" href="index.html">Manage</a></div>
+        <div class="panel-head"><h2>My subjects &amp; batch timings</h2><a class="btn btn-outline btn-sm" href="../student-subjects.html">Manage</a></div>
         <div class="panel-body flush">
           <div class="table-wrap" style="border:0;border-radius:0;">
             <table class="data">
@@ -110,15 +125,15 @@
 
       <div class="grid g-2" style="align-items:start;">
         <section class="panel reveal">
-          <div class="panel-head"><h2>New study materials</h2><a class="btn btn-outline btn-sm" href="index.html">All materials</a></div>
+          <div class="panel-head"><h2>New study materials</h2><a class="btn btn-outline btn-sm" href="../student-materials.html">All materials</a></div>
           <div class="panel-body">
             <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.9rem;">
-              <li class="flex items-center" style="gap:.8rem;"><span class="icon-tile" style="width:40px;height:40px;font-size:1rem;"><i class="fa-regular fa-file-pdf" aria-hidden="true"></i></span><span class="min-w-0" style="flex:1;"><strong style="display:block;font-size:.93rem;">Trigonometry worksheet 4</strong><span style="font-size:.8rem;color:var(--text-3);">Mathematics · 2 days ago</span></span><a class="btn btn-ghost btn-sm" href="index.html" aria-label="Download Trigonometry worksheet 4"><i class="fa-solid fa-download" aria-hidden="true"></i></a></li><li class="flex items-center" style="gap:.8rem;"><span class="icon-tile" style="width:40px;height:40px;font-size:1rem;"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span><span class="min-w-0" style="flex:1;"><strong style="display:block;font-size:.93rem;">Motion formula sheet</strong><span style="font-size:.8rem;color:var(--text-3);">Physics · 3 days ago</span></span><a class="btn btn-ghost btn-sm" href="index.html" aria-label="Download Motion formula sheet"><i class="fa-solid fa-download" aria-hidden="true"></i></a></li><li class="flex items-center" style="gap:.8rem;"><span class="icon-tile" style="width:40px;height:40px;font-size:1rem;"><i class="fa-regular fa-file-code" aria-hidden="true"></i></span><span class="min-w-0" style="flex:1;"><strong style="display:block;font-size:.93rem;">Python loops examples</strong><span style="font-size:.8rem;color:var(--text-3);">Computer Science · 5 days ago</span></span><a class="btn btn-ghost btn-sm" href="index.html" aria-label="Download Python loops examples"><i class="fa-solid fa-download" aria-hidden="true"></i></a></li><li class="flex items-center" style="gap:.8rem;"><span class="icon-tile" style="width:40px;height:40px;font-size:1rem;"><i class="fa-regular fa-file-pdf" aria-hidden="true"></i></span><span class="min-w-0" style="flex:1;"><strong style="display:block;font-size:.93rem;">Comprehension pack 2</strong><span style="font-size:.8rem;color:var(--text-3);">English · 1 week ago</span></span><a class="btn btn-ghost btn-sm" href="index.html" aria-label="Download Comprehension pack 2"><i class="fa-solid fa-download" aria-hidden="true"></i></a></li>
+              <li class="flex items-center" style="gap:.8rem;"><span class="icon-tile" style="width:40px;height:40px;font-size:1rem;"><i class="fa-regular fa-file-pdf" aria-hidden="true"></i></span><span class="min-w-0" style="flex:1;"><strong style="display:block;font-size:.93rem;">Trigonometry worksheet 4</strong><span style="font-size:.8rem;color:var(--text-3);">Mathematics · 2 days ago</span></span><a class="btn btn-ghost btn-sm" href="../student-materials.html" aria-label="Download Trigonometry worksheet 4"><i class="fa-solid fa-download" aria-hidden="true"></i></a></li><li class="flex items-center" style="gap:.8rem;"><span class="icon-tile" style="width:40px;height:40px;font-size:1rem;"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span><span class="min-w-0" style="flex:1;"><strong style="display:block;font-size:.93rem;">Motion formula sheet</strong><span style="font-size:.8rem;color:var(--text-3);">Physics · 3 days ago</span></span><a class="btn btn-ghost btn-sm" href="../student-materials.html" aria-label="Download Motion formula sheet"><i class="fa-solid fa-download" aria-hidden="true"></i></a></li><li class="flex items-center" style="gap:.8rem;"><span class="icon-tile" style="width:40px;height:40px;font-size:1rem;"><i class="fa-regular fa-file-code" aria-hidden="true"></i></span><span class="min-w-0" style="flex:1;"><strong style="display:block;font-size:.93rem;">Python loops examples</strong><span style="font-size:.8rem;color:var(--text-3);">Computer Science · 5 days ago</span></span><a class="btn btn-ghost btn-sm" href="../student-materials.html" aria-label="Download Python loops examples"><i class="fa-solid fa-download" aria-hidden="true"></i></a></li><li class="flex items-center" style="gap:.8rem;"><span class="icon-tile" style="width:40px;height:40px;font-size:1rem;"><i class="fa-regular fa-file-pdf" aria-hidden="true"></i></span><span class="min-w-0" style="flex:1;"><strong style="display:block;font-size:.93rem;">Comprehension pack 2</strong><span style="font-size:.8rem;color:var(--text-3);">English · 1 week ago</span></span><a class="btn btn-ghost btn-sm" href="../student-materials.html" aria-label="Download Comprehension pack 2"><i class="fa-solid fa-download" aria-hidden="true"></i></a></li>
             </ul>
           </div>
         </section>
         <section class="panel reveal">
-          <div class="panel-head"><h2>Upcoming tests</h2><a class="btn btn-outline btn-sm" href="index.html">Exam schedule</a></div>
+          <div class="panel-head"><h2>Upcoming tests</h2><a class="btn btn-outline btn-sm" href="../student-tests.html">Exam schedule</a></div>
           <div class="panel-body">
             <ul class="timeline">
               <li><span class="dot"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span><span class="min-w-0"><strong>Mathematics monthly test</strong><span>Sat 22 Aug · 10:00 – 11:30 · Chapters 1–5</span></span></li><li><span class="dot"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span><span class="min-w-0"><strong>Physics unit test</strong><span>Wed 26 Aug · 18:00 – 19:00 · Motion &amp; force</span></span></li><li><span class="dot"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span><span class="min-w-0"><strong>English writing assessment</strong><span>Thu 03 Sep · 15:30 – 16:30 · Essay technique</span></span></li>
@@ -129,7 +144,7 @@
 
       <div class="grid g-2" style="align-items:start;">
         <section class="panel reveal">
-          <div class="panel-head"><h2>Recent results</h2><a class="btn btn-outline btn-sm" href="index.html">All results</a></div>
+          <div class="panel-head"><h2>Recent results</h2><a class="btn btn-outline btn-sm" href="../student-results.html">All results</a></div>
           <div class="panel-body flush">
             <div class="table-wrap" style="border:0;border-radius:0;">
               <table class="data">
