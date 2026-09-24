@@ -50,17 +50,20 @@
 
       <span class="badge" style="margin-bottom:.6rem;"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i>Staff area</span>
       <h1 style="font-size:1.7rem;">Create Admin Account</h1>
-      <p>New staff accounts are reviewed by the centre administrator before activation.</p>
-      <form class="form" id="admin-register-form" novalidate>
+      <div id="auth-success-message" class="auth-success-message" role="alert" style="display: none;">
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+        <span class="auth-message-text"></span>
+      </div>
+      <form class="form" id="admin-register-form" autocomplete="off" novalidate>
         <div class="field">
           <label class="label" for="ar-name">Full name <span class="req" aria-hidden="true">*</span></label>
           <div class="control has-icon"><i class="fa-regular fa-user field-icon" aria-hidden="true"></i>
-            <input class="input" id="ar-name" name="name" type="text" placeholder="Your full name" autocomplete="name" required></div>
+            <input class="input" id="ar-name" name="name" type="text" placeholder="Your full name" autocomplete="off" required></div>
         </div>
         <div class="field">
           <label class="label" for="ar-email">Email address <span class="req" aria-hidden="true">*</span></label>
           <div class="control has-icon"><i class="fa-regular fa-envelope field-icon" aria-hidden="true"></i>
-            <input class="input" id="ar-email" name="email" type="email" placeholder="you@learnsphere.example" autocomplete="email" required></div>
+            <input class="input" id="ar-email" name="email" type="email" placeholder="you@learnsphere.example" autocomplete="off" required></div>
         </div>
         <div class="field">
         <label class="label" for="ar-password">Password <span class="req" aria-hidden="true">*</span></label>
@@ -78,10 +81,29 @@
           <button class="field-action" type="button" data-toggle-password aria-label="Show password"><i class="fa-regular fa-eye" aria-hidden="true"></i></button>
         </div>
       </div>
-        <label class="check" for="ar-terms"><input type="checkbox" id="ar-terms" name="terms" required><span>I confirm I am authorised to request a staff account.</span></label>
+        <label class="check" for="ar-terms"><input type="checkbox" id="ar-terms" name="terms" autocomplete="off" required><span>I confirm I am authorised to request a staff account.</span></label>
         <button class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa-solid fa-user-shield" aria-hidden="true"></i>Create Admin Account</button>
         <p class="form-note">Already have access? <a href="admin-login.html">Admin Login</a></p>
       </form>
+      <script>
+        (function () {
+          var f = document.getElementById('admin-register-form');
+          if (f) {
+            try { f.reset(); } catch (e) {}
+            var inputs = f.querySelectorAll('input, select, textarea');
+            for (var i = 0; i < inputs.length; i++) {
+              var el = inputs[i];
+              if (el.type === 'checkbox' || el.type === 'radio') {
+                el.checked = false;
+                el.defaultChecked = false;
+              } else {
+                el.value = '';
+                el.defaultValue = '';
+              }
+            }
+          }
+        })();
+      </script>
     </div>
   </section>
 </main>

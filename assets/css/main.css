@@ -1255,6 +1255,24 @@ body.student-dashboard-page { min-height: 100vh; overflow-x: hidden; }
 .count-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: .9rem 1.1rem; min-width: 84px; box-shadow: var(--shadow-sm); }
 .count-box .num { font-family: var(--font-head); font-weight: 800; font-size: 1.8rem; color: var(--text); line-height: 1; }
 .count-box .lbl { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); }
+.auth-success-message {
+  background: rgba(30, 158, 106, 0.12);
+  border: 1px solid var(--success, #1e9e6a);
+  color: var(--text, #1c2536);
+  border-radius: var(--r-md, 8px);
+  padding: 0.85rem 1.15rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.auth-success-message i {
+  color: var(--success, #1e9e6a);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
 
 .toast {
   position: fixed;

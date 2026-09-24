@@ -1,28 +1,124 @@
 /* session.js - Handles Auth State and Navigation */
 
-document.addEventListener('DOMContentLoaded', () => {
+function safeGetJSON(key, fallback) {
+    try {
+        const val = localStorage.getItem(key);
+        return val ? JSON.parse(val) : fallback;
+    } catch (e) {
+        return fallback;
+    }
+}
+
+function resetAuthForm(form) {
+    if (!form) return;
+    try {
+        if (typeof form.reset === 'function') form.reset();
+    } catch (e) {}
+    form.querySelectorAll('input').forEach(input => {
+        if (input.type === 'checkbox' || input.type === 'radio') {
+            input.checked = false;
+            input.defaultChecked = false;
+        } else {
+            input.value = '';
+            input.defaultValue = '';
+        }
+    });
+    form.querySelectorAll('select').forEach(select => {
+        select.selectedIndex = 0;
+        for (let i = 0; i < select.options.length; i++) {
+            select.options[i].selected = (i === 0);
+            select.options[i].defaultSelected = (i === 0);
+        }
+    });
+    form.querySelectorAll('textarea').forEach(textarea => {
+        textarea.value = '';
+        textarea.defaultValue = '';
+    });
+}
+
+function clearAuthFormsAndMessages() {
+    if (window._authSuccessTimer) {
+        clearTimeout(window._authSuccessTimer);
+        window._authSuccessTimer = null;
+    }
+    // Hide all auth success message banners and clear their text
+    document.querySelectorAll('.auth-success-message, #auth-success-message').forEach(el => {
+        el.style.display = 'none';
+        const txt = el.querySelector('.auth-message-text') || el.querySelector('span');
+        if (txt) txt.textContent = '';
+    });
+
+    // Reset all auth forms
+    const authForms = document.querySelectorAll('#login-form, #admin-login-form, #register-form, #admin-register-form');
+    authForms.forEach(resetAuthForm);
+}
+
+// Show auth success message (pure inline banner, NO toast notification, auto-hide after 5 seconds)
+function showAuthSuccessMessage(form, message) {
+    if (window._authSuccessTimer) {
+        clearTimeout(window._authSuccessTimer);
+        window._authSuccessTimer = null;
+    }
+
+    let msgBox = form.parentElement ? form.parentElement.querySelector('.auth-success-message, #auth-success-message') : null;
+    if (!msgBox) {
+        msgBox = document.getElementById('auth-success-message');
+    }
+    if (!msgBox) {
+        msgBox = document.createElement('div');
+        msgBox.id = 'auth-success-message';
+        msgBox.className = 'auth-success-message';
+        msgBox.setAttribute('role', 'alert');
+        msgBox.setAttribute('aria-live', 'polite');
+        msgBox.innerHTML = '<i class="fa-solid fa-circle-check" aria-hidden="true"></i><span class="auth-message-text"></span>';
+        form.insertAdjacentElement('beforebegin', msgBox);
+    }
+    const textSpan = msgBox.querySelector('.auth-message-text') || msgBox.querySelector('span');
+    if (textSpan) {
+        textSpan.textContent = message;
+    } else {
+        msgBox.innerHTML = `<i class="fa-solid fa-circle-check" aria-hidden="true"></i><span class="auth-message-text">${message}</span>`;
+    }
+    msgBox.style.display = 'flex';
+    msgBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Automatically hide/remove the message after EXACTLY 5 seconds (5000ms)
+    window._authSuccessTimer = setTimeout(() => {
+        msgBox.style.display = 'none';
+        const txt = msgBox.querySelector('.auth-message-text') || msgBox.querySelector('span');
+        if (txt) txt.textContent = '';
+        window._authSuccessTimer = null;
+    }, 5000);
+}
+
+// Global page restoration & load reset listeners
+window.addEventListener('pageshow', clearAuthFormsAndMessages);
+window.addEventListener('load', clearAuthFormsAndMessages);
+
+function initSession() {
     // 1. Initialize Mock Database
-    let usersStr = localStorage.getItem('learnsphere_users');
-    let users = usersStr ? JSON.parse(usersStr) : {};
+    let users = safeGetJSON('learnsphere_users', {});
     
     // Normalize existing roles
-    Object.values(users).forEach(user => {
-        if (user.role === 'admin') user.role = 'ADMIN';
-        if (user.role === 'student') user.role = 'CUSTOMER';
-    });
+    if (users && typeof users === 'object') {
+        Object.values(users).forEach(user => {
+            if (user && typeof user === 'object') {
+                if (user.role === 'admin') user.role = 'ADMIN';
+                if (user.role === 'student') user.role = 'CUSTOMER';
+            }
+        });
+    }
     
     const path = window.location.pathname.toLowerCase();
     
     // Check if the current page is the Home page (index.html, home-2.html, or root)
     const isHomePage = !path.includes('/student/') && !path.includes('/admin/') && (path.endsWith('index.html') || path.endsWith('home-2.html') || path.endsWith('/') || path === '' || path.endsWith('/learnsphere-tutoring-html-template') || path.endsWith('/learnsphere-tutoring-html-template/'));
     if (isHomePage) {
-        // Ensure returning to the Home page loads directly in the clean public/logged-out state
         localStorage.removeItem('currentUser');
     }
 
-    const currentUserStr = localStorage.getItem('currentUser');
-    const currentUser = currentUserStr ? JSON.parse(currentUserStr) : null;
-    if (currentUser) {
+    const currentUser = safeGetJSON('currentUser', null);
+    if (currentUser && typeof currentUser === 'object') {
         if (currentUser.role === 'admin') currentUser.role = 'ADMIN';
         if (currentUser.role === 'student') currentUser.role = 'CUSTOMER';
     }
@@ -39,42 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-    
-    // Helper function to display auth success messages in both inline banner and toast notification
-    function showAuthSuccessMessage(form, message) {
-        // 1. Toast notification
-        let toast = document.querySelector('[data-toast]') || document.querySelector('.toast');
-        if (!toast) {
-            toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.setAttribute('data-toast', '');
-            toast.setAttribute('role', 'status');
-            toast.setAttribute('aria-live', 'polite');
-            toast.innerHTML = '<i class="fa-solid fa-circle-check" aria-hidden="true"></i><p></p>';
-            document.body.appendChild(toast);
-        }
-        const p = toast.querySelector('p');
-        if (p) p.textContent = message;
-        toast.classList.add('is-visible');
-        if (window._authToastTimer) clearTimeout(window._authToastTimer);
-        window._authToastTimer = setTimeout(() => {
-            toast.classList.remove('is-visible');
-        }, 5000);
-
-        // 2. Visible inline message banner inside auth-card
-        let msgBox = form.parentElement ? form.parentElement.querySelector('.auth-success-message') : null;
-        if (!msgBox) {
-            msgBox = document.createElement('div');
-            msgBox.className = 'auth-success-message';
-            msgBox.setAttribute('role', 'alert');
-            msgBox.setAttribute('aria-live', 'polite');
-            msgBox.style.cssText = 'background: rgba(30, 158, 106, 0.12); border: 1px solid var(--success, #1e9e6a); color: var(--text, #1c2536); border-radius: var(--r-md, 8px); padding: 0.85rem 1.15rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 600; font-size: 0.95rem;';
-            form.insertAdjacentElement('beforebegin', msgBox);
-        }
-        msgBox.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--success, #1e9e6a); font-size: 1.2rem; flex-shrink: 0;" aria-hidden="true"></i><span>${message}</span>`;
-        msgBox.style.display = 'flex';
-        msgBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
 
     if (typeof window.showToast !== 'function') {
         window.showToast = function(msg) {
@@ -95,57 +155,15 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // 2. Auth Pages logic
-    if (path.includes('login.html') || path.includes('register.html') || path.includes('signup.html') || path.includes('admin-login.html')) {
-        // Explicitly reset form values and remove success messages on page load/refresh
-        function clearAuthFormsAndMessages() {
-            // Remove success message banner
-            document.querySelectorAll('.auth-success-message').forEach(el => el.remove());
-
-            // Hide and reset toast notification
-            const toast = document.querySelector('[data-toast]') || document.querySelector('.toast');
-            if (toast) {
-                toast.classList.remove('is-visible');
-                const p = toast.querySelector('p');
-                if (p) p.textContent = 'Done.';
-            }
-
-            // Reset auth forms
-            const authForms = document.querySelectorAll('#login-form, #admin-login-form, #register-form, #admin-register-form');
-            authForms.forEach(form => {
-                if (typeof form.reset === 'function') form.reset();
-                form.querySelectorAll('input').forEach(input => {
-                    if (input.type === 'checkbox' || input.type === 'radio') {
-                        input.checked = false;
-                    } else {
-                        input.value = '';
-                    }
-                });
-                form.querySelectorAll('select').forEach(select => {
-                    select.selectedIndex = 0;
-                });
-                form.querySelectorAll('textarea').forEach(textarea => {
-                    textarea.value = '';
-                });
-            });
-        }
-
-        // Run immediately on DOMContentLoaded
+    // 2. Auth Forms Logic (bound directly to element presence, independent of URL pathname)
+    const loginForm = document.getElementById('login-form') || document.getElementById('admin-login-form');
+    const regForm = document.getElementById('register-form') || document.getElementById('admin-register-form');
+    
+    if (loginForm || regForm) {
+        // Reset auth forms & hide messages immediately on page init
         clearAuthFormsAndMessages();
 
-        // Run on pageshow (in case page is restored from cache or reload)
-        window.addEventListener('pageshow', clearAuthFormsAndMessages);
-
-        // Run on window load
-        window.addEventListener('load', clearAuthFormsAndMessages);
-
-        // Micro-delays to defeat asynchronous browser reload form-state restoration
-        setTimeout(clearAuthFormsAndMessages, 0);
-        setTimeout(clearAuthFormsAndMessages, 50);
-        setTimeout(clearAuthFormsAndMessages, 150);
-        
         // Handle Registration
-        const regForm = document.getElementById('register-form') || document.getElementById('admin-register-form');
         if (regForm) {
             const confirmInput = regForm.querySelector('input[name="r-confirm"]') || regForm.querySelector('input[name="ar-confirm"]');
             if (confirmInput) {
@@ -182,12 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Refresh users from localStorage
-                let latestUsers = {};
-                try {
-                    latestUsers = JSON.parse(localStorage.getItem('learnsphere_users')) || {};
-                } catch (err) {
-                    latestUsers = {};
-                }
+                let latestUsers = safeGetJSON('learnsphere_users', {});
                 users = Object.assign({}, users, latestUsers);
 
                 const isAdmin = regForm.id === 'admin-register-form';
@@ -202,13 +215,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 localStorage.setItem('learnsphere_users', JSON.stringify(users));
 
+                // Reset form controls so session history does not retain input values
+                resetAuthForm(regForm);
+
                 // Display success message and remain on the same page
                 showAuthSuccessMessage(regForm, 'Thanks for signing up!');
             });
         }
         
         // Handle Login
-        const loginForm = document.getElementById('login-form') || document.getElementById('admin-login-form');
         if (loginForm) {
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -226,12 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isAdminLogin = loginForm.id === 'admin-login-form';
 
                 // Refresh users from localStorage
-                let latestUsers = {};
-                try {
-                    latestUsers = JSON.parse(localStorage.getItem('learnsphere_users')) || {};
-                } catch (err) {
-                    latestUsers = {};
-                }
+                let latestUsers = safeGetJSON('learnsphere_users', {});
                 users = Object.assign({}, users, latestUsers);
                 
                 if (users[email] && users[email].password === pswd) {
@@ -248,6 +258,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (localStorage.getItem('intendedDestination')) {
                         localStorage.removeItem('intendedDestination');
                     }
+
+                    // Reset form controls so session history does not retain credentials
+                    resetAuthForm(loginForm);
 
                     // Display success message and remain on current page
                     showAuthSuccessMessage(loginForm, 'Thanks for logging in!');
@@ -267,6 +280,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (localStorage.getItem('intendedDestination')) {
                         localStorage.removeItem('intendedDestination');
                     }
+
+                    // Reset form controls so session history does not retain credentials
+                    resetAuthForm(loginForm);
 
                     // Display success message and remain on current page
                     showAuthSuccessMessage(loginForm, 'Thanks for logging in!');
@@ -467,7 +483,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSession);
+} else {
+    initSession();
+}
 
 window.handleLogout = function(e) {
     if(e) e.preventDefault();

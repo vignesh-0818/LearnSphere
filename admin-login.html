@@ -55,7 +55,11 @@
         <a href="login.html" class="btn btn-outline" style="flex: 1 1 140px;">Customer Login</a>
         <a href="admin-login.html" class="btn btn-primary" style="flex: 1 1 140px;">Admin Login</a>
       </div>
-      <form class="form" id="admin-login-form" novalidate>
+      <div id="auth-success-message" class="auth-success-message" role="alert" style="display: none;">
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+        <span class="auth-message-text"></span>
+      </div>
+      <form class="form" id="admin-login-form" autocomplete="off" novalidate>
         <div class="field">
           <label class="label" for="a-email">Admin email <span class="req" aria-hidden="true">*</span></label>
           <div class="control has-icon"><i class="fa-regular fa-envelope field-icon" aria-hidden="true"></i>
@@ -70,7 +74,7 @@
         </div>
       </div>
         <div class="auth-links">
-          <label class="check" for="a-remember"><input type="checkbox" id="a-remember" name="remember"><span>Remember me</span></label>
+          <label class="check" for="a-remember"><input type="checkbox" id="a-remember" name="remember" autocomplete="off"><span>Remember me</span></label>
           <a href="forgot-password.html">Forgot password?</a>
         </div>
         <button class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>Login</button>
@@ -78,11 +82,29 @@
         
         <p class="form-note">Need a staff account? <a href="admin-register.html">Create Admin Account</a></p>
       </form>
+      <script>
+        (function () {
+          var f = document.getElementById('admin-login-form');
+          if (f) {
+            try { f.reset(); } catch (e) {}
+            var inputs = f.querySelectorAll('input, select, textarea');
+            for (var i = 0; i < inputs.length; i++) {
+              var el = inputs[i];
+              if (el.type === 'checkbox' || el.type === 'radio') {
+                el.checked = false;
+                el.defaultChecked = false;
+              } else {
+                el.value = '';
+                el.defaultValue = '';
+              }
+            }
+          }
+        })();
+      </script>
     </div>
   </section>
 </main>
 <div class="toast" data-toast role="status" aria-live="polite"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><p>Done.</p></div>
-<script src="assets/js/dashboard.js"></script>
 <script src="assets/js/session.js"></script>
 </body>
 </html>
