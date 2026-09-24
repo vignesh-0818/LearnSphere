@@ -40,28 +40,156 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    // Helper function to display auth success messages in both inline banner and toast notification
+    function showAuthSuccessMessage(form, message) {
+        // 1. Toast notification
+        let toast = document.querySelector('[data-toast]') || document.querySelector('.toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.setAttribute('data-toast', '');
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
+            toast.innerHTML = '<i class="fa-solid fa-circle-check" aria-hidden="true"></i><p></p>';
+            document.body.appendChild(toast);
+        }
+        const p = toast.querySelector('p');
+        if (p) p.textContent = message;
+        toast.classList.add('is-visible');
+        if (window._authToastTimer) clearTimeout(window._authToastTimer);
+        window._authToastTimer = setTimeout(() => {
+            toast.classList.remove('is-visible');
+        }, 5000);
+
+        // 2. Visible inline message banner inside auth-card
+        let msgBox = form.parentElement ? form.parentElement.querySelector('.auth-success-message') : null;
+        if (!msgBox) {
+            msgBox = document.createElement('div');
+            msgBox.className = 'auth-success-message';
+            msgBox.setAttribute('role', 'alert');
+            msgBox.setAttribute('aria-live', 'polite');
+            msgBox.style.cssText = 'background: rgba(30, 158, 106, 0.12); border: 1px solid var(--success, #1e9e6a); color: var(--text, #1c2536); border-radius: var(--r-md, 8px); padding: 0.85rem 1.15rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 600; font-size: 0.95rem;';
+            form.insertAdjacentElement('beforebegin', msgBox);
+        }
+        msgBox.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--success, #1e9e6a); font-size: 1.2rem; flex-shrink: 0;" aria-hidden="true"></i><span>${message}</span>`;
+        msgBox.style.display = 'flex';
+        msgBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    if (typeof window.showToast !== 'function') {
+        window.showToast = function(msg) {
+            let toast = document.querySelector('[data-toast]') || document.querySelector('.toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.setAttribute('data-toast', '');
+                toast.setAttribute('role', 'status');
+                toast.setAttribute('aria-live', 'polite');
+                toast.innerHTML = '<i class="fa-solid fa-circle-check" aria-hidden="true"></i><p></p>';
+                document.body.appendChild(toast);
+            }
+            const p = toast.querySelector('p');
+            if (p) p.textContent = msg;
+            toast.classList.add('is-visible');
+            setTimeout(() => toast.classList.remove('is-visible'), 3800);
+        };
+    }
+
     // 2. Auth Pages logic
     if (path.includes('login.html') || path.includes('register.html') || path.includes('signup.html') || path.includes('admin-login.html')) {
-        if (currentUser) {
-            window.location.href = currentUser.role === 'ADMIN' ? 'admin-dashboard.html' : 'student-dashboard.html';
-            return;
+        // Explicitly reset form values and remove success messages on page load/refresh
+        function clearAuthFormsAndMessages() {
+            // Remove success message banner
+            document.querySelectorAll('.auth-success-message').forEach(el => el.remove());
+
+            // Hide and reset toast notification
+            const toast = document.querySelector('[data-toast]') || document.querySelector('.toast');
+            if (toast) {
+                toast.classList.remove('is-visible');
+                const p = toast.querySelector('p');
+                if (p) p.textContent = 'Done.';
+            }
+
+            // Reset auth forms
+            const authForms = document.querySelectorAll('#login-form, #admin-login-form, #register-form, #admin-register-form');
+            authForms.forEach(form => {
+                if (typeof form.reset === 'function') form.reset();
+                form.querySelectorAll('input').forEach(input => {
+                    if (input.type === 'checkbox' || input.type === 'radio') {
+                        input.checked = false;
+                    } else {
+                        input.value = '';
+                    }
+                });
+                form.querySelectorAll('select').forEach(select => {
+                    select.selectedIndex = 0;
+                });
+                form.querySelectorAll('textarea').forEach(textarea => {
+                    textarea.value = '';
+                });
+            });
         }
-        
-        // Force clear inputs on load to prevent any browser autofill or saved credentials from appearing
-        const emailInputs = document.querySelectorAll('input[type="email"]');
-        const passInputs = document.querySelectorAll('input[type="password"]');
-        emailInputs.forEach(input => input.value = '');
-        passInputs.forEach(input => input.value = '');
+
+        // Run immediately on DOMContentLoaded
+        clearAuthFormsAndMessages();
+
+        // Run on pageshow (in case page is restored from cache or reload)
+        window.addEventListener('pageshow', clearAuthFormsAndMessages);
+
+        // Run on window load
+        window.addEventListener('load', clearAuthFormsAndMessages);
+
+        // Micro-delays to defeat asynchronous browser reload form-state restoration
+        setTimeout(clearAuthFormsAndMessages, 0);
+        setTimeout(clearAuthFormsAndMessages, 50);
+        setTimeout(clearAuthFormsAndMessages, 150);
         
         // Handle Registration
         const regForm = document.getElementById('register-form') || document.getElementById('admin-register-form');
         if (regForm) {
+            const confirmInput = regForm.querySelector('input[name="r-confirm"]') || regForm.querySelector('input[name="ar-confirm"]');
+            if (confirmInput) {
+                confirmInput.addEventListener('input', () => {
+                    confirmInput.setCustomValidity('');
+                });
+            }
+
             regForm.addEventListener('submit', (e) => {
                 e.preventDefault();
+
+                if (confirmInput) {
+                    confirmInput.setCustomValidity('');
+                }
+
+                // Validate form inputs
+                if (regForm.checkValidity && !regForm.checkValidity()) {
+                    regForm.reportValidity();
+                    return;
+                }
+
                 const fd = new FormData(regForm);
-                const email = fd.get('email');
+                const email = (fd.get('email') || '').trim();
                 if (!email) return;
-                
+
+                const pass = fd.get('r-password') || fd.get('ar-password');
+                const confirmPass = fd.get('r-confirm') || fd.get('ar-confirm');
+                if (confirmPass && pass !== confirmPass) {
+                    if (confirmInput) {
+                        confirmInput.setCustomValidity("Passwords do not match");
+                        confirmInput.reportValidity();
+                    }
+                    return;
+                }
+
+                // Refresh users from localStorage
+                let latestUsers = {};
+                try {
+                    latestUsers = JSON.parse(localStorage.getItem('learnsphere_users')) || {};
+                } catch (err) {
+                    latestUsers = {};
+                }
+                users = Object.assign({}, users, latestUsers);
+
                 const isAdmin = regForm.id === 'admin-register-form';
                 
                 users[email] = {
@@ -69,11 +197,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     email: email,
                     phone: fd.get('phone') || '',
                     class: fd.get('grade') || 'Not specified',
-                    password: fd.get('r-password') || fd.get('ar-password'),
+                    password: pass,
                     role: isAdmin ? 'ADMIN' : 'CUSTOMER'
                 };
                 localStorage.setItem('learnsphere_users', JSON.stringify(users));
-                window.location.href = isAdmin ? 'admin-login.html' : 'login.html';
+
+                // Display success message and remain on the same page
+                showAuthSuccessMessage(regForm, 'Thanks for signing up!');
             });
         }
         
@@ -82,11 +212,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (loginForm) {
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
+
+                // Validate form inputs
+                if (loginForm.checkValidity && !loginForm.checkValidity()) {
+                    loginForm.reportValidity();
+                    return;
+                }
+
                 const fd = new FormData(loginForm);
-                const email = fd.get('email');
+                const email = (fd.get('email') || '').trim();
                 const pswd = fd.get('password') || fd.get('l-password') || fd.get('a-password') || (document.getElementById('l-password') ? document.getElementById('l-password').value : '') || (document.getElementById('a-password') ? document.getElementById('a-password').value : '');
                 
                 const isAdminLogin = loginForm.id === 'admin-login-form';
+
+                // Refresh users from localStorage
+                let latestUsers = {};
+                try {
+                    latestUsers = JSON.parse(localStorage.getItem('learnsphere_users')) || {};
+                } catch (err) {
+                    latestUsers = {};
+                }
+                users = Object.assign({}, users, latestUsers);
                 
                 if (users[email] && users[email].password === pswd) {
                     const userRole = users[email].role;
@@ -99,13 +245,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         return;
                     }
                     localStorage.setItem('currentUser', JSON.stringify(users[email]));
-                    const intended = localStorage.getItem('intendedDestination');
-                    if (intended) {
+                    if (localStorage.getItem('intendedDestination')) {
                         localStorage.removeItem('intendedDestination');
-                        window.location.href = intended;
-                    } else {
-                        window.location.href = userRole === 'ADMIN' ? 'admin-dashboard.html' : 'student-dashboard.html';
                     }
+
+                    // Display success message and remain on current page
+                    showAuthSuccessMessage(loginForm, 'Thanks for logging in!');
                 } else if (users[email]) {
                     alert('Incorrect password for ' + email);
                 } else {
@@ -119,13 +264,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         role: isAdminLogin ? 'ADMIN' : 'CUSTOMER'
                     };
                     localStorage.setItem('currentUser', JSON.stringify(demoUser));
-                    const intended = localStorage.getItem('intendedDestination');
-                    if (intended) {
+                    if (localStorage.getItem('intendedDestination')) {
                         localStorage.removeItem('intendedDestination');
-                        window.location.href = intended;
-                    } else {
-                        window.location.href = isAdminLogin ? 'admin-dashboard.html' : 'student-dashboard.html';
                     }
+
+                    // Display success message and remain on current page
+                    showAuthSuccessMessage(loginForm, 'Thanks for logging in!');
                 }
             });
         }

@@ -50,7 +50,7 @@
 
       <h1 style="font-size:1.7rem;">Welcome back</h1>
       <p style="margin-bottom:1.5rem;">Sign in to your student account to see schedules, materials and results.</p>
-      <form class="form" id="login-form" novalidate>
+      <form class="form" id="login-form" autocomplete="off" novalidate>
         <div class="field">
           <label class="label" for="l-email">Email address <span class="req" aria-hidden="true">*</span></label>
           <div class="control has-icon">
@@ -67,7 +67,7 @@
         </div>
       </div>
         <div class="auth-links">
-          <label class="check" for="l-remember"><input type="checkbox" id="l-remember" name="remember"><span>Remember me</span></label>
+          <label class="check" for="l-remember"><input type="checkbox" id="l-remember" name="remember" autocomplete="off"><span>Remember me</span></label>
           <a href="forgot-password.html">Forgot password?</a>
         </div>
         <button class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>Login</button>
